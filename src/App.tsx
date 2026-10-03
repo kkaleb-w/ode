@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { Cursor } from "@/components/Cursor";
 import { Fireflies } from "@/components/Fireflies";
+import { SoundPill } from "@/components/SoundPill";
 import Home from "@/pages/Home";
 import Photography from "@/pages/Photography";
 import Code from "@/pages/Code";
@@ -22,9 +23,10 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
-      {/* outside the router: the swarm and the pointer outlive the page you are on */}
+      {/* outside the router: the swarm, the pointer and the player outlive the page */}
       <Fireflies />
       <Cursor />
+      <SoundPill />
     </>
   );
 }

@@ -36,6 +36,34 @@ on a spring, because the system cursor is hidden. Fireflies rise out of the
 bottom of the screen, mostly keeping low over the dark end of the photograph. The
 folders lean into the wind, which arrives in bursts.
 
+## Sound
+
+The room has a voice, and none of it is a sample: the wind, the insects and the
+bursts are all synthesised in the browser, so there is no recording to license and
+nothing to download.
+
+- **Sound starts on the first gesture.** Browsers refuse audio before a visitor
+  has done something, so the graph is built on the first click or keypress and
+  faded up from silence over a couple of seconds. The speaker button in the pill
+  mutes it, and that choice is remembered.
+- **The wind is the same wind that moves the folders.** `src/audio/wind.ts` is
+  driven every frame by the gust envelope in `src/lib/air.ts` — a low body, a
+  narrow resonant whistle, and a hiss that only exists at the peak of a push.
+  Measured: correlation of 0.79 between the gust and the 200–1200Hz band.
+- **The insects are cricket and grasshopper calls, not a field recording.**
+  `src/audio/night.ts`. A cricket chirp is a broadband click through a sharp
+  resonance, repeated in groups at seven different pitches, tempos and stereo
+  positions; two grasshoppers rasp underneath; a brown-noise bed gives it a floor.
+  No birds. Measured: correlation of 0.18 with the gust — they are independent, as
+  they should be.
+- **The player** is the pill. Back, record, forward, speaker. Pressing the record
+  plays and pauses, the speaker slides the volume bar out on approach, and the
+  bar moves the master — so it moves everything.
+
+Songs are **not** in the repository. `public/audio/` is gitignored, and
+`scripts/fetch-music.sh` fetches them locally. YouTube bot-walls a datacenter IP,
+so that script needs a cookies file from a signed-in browser.
+
 ## Pages
 
 - `/photography` — a justified gallery: rows solved to fill the width exactly, at

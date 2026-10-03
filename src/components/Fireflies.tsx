@@ -56,7 +56,7 @@ function makeBugs(): Bug[] {
       delay: -rand(i, 11) * 36,
       growDur: 2.1 + rand(i, 12) * 2.6,
       flickDur: 3.4 + rand(i, 13) * 4.2,
-      hue: rand(i, 14) < 0.3 ? "#fff1d4" : "#ffd98a",
+      hue: rand(i, 14) < 0.35 ? "#ffe066" : "#ffc400",
     };
   });
 }
@@ -85,7 +85,7 @@ const Swarm = memo(function Swarm({ bugs }: { bugs: Bug[] }) {
                 height: b.core,
                 marginLeft: -b.core / 2,
                 marginTop: -b.core / 2,
-                background: `radial-gradient(closest-side, #fffaf0 80%, ${b.hue} 100%)`,
+                background: `radial-gradient(closest-side, #fff9d4 80%, ${b.hue} 100%)`,
                 ["--flick-dur" as string]: `${b.flickDur}s`,
               }}
             />

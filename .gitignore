@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# music: somebody else's recordings, and this repository is public.
+# fetch them locally with scripts/fetch-music.sh
+public/audio/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

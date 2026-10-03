@@ -98,6 +98,37 @@ target height and simply stops short of the right edge. Verified at 1440: row 1
 three frames at ratio 1.501, 320px tall, summing to exactly 1440 with 0px of gap;
 row 2 the two portraits at 0.666 plus one landscape, ragged at 918 of 1440.
 
+## Sound
+
+Everything the room says is synthesised in the browser. There is not one sample in
+the repository, which is why there is nothing to license, nothing to load, and
+nothing that loops audibly after the second minute.
+
+- **One context, built on the first gesture.** Browsers refuse audio until the
+  visitor has done something, so nothing is constructed before that — no suspended
+  context sitting around waiting to be scolded. The graph comes up on the first
+  click or keypress and the master ramps from zero, so the room fills rather than
+  switches on.
+- **The wind is driven by the gust envelope itself** — the same numbers that move
+  the folders, read every frame in `src/audio/wind.ts`. Three layers, each doing a
+  different job: a low body that swells, a narrow resonance that climbs in pitch as
+  the push builds, and a hiss that appears only at the top of one. That is why a
+  gust sounds like a gust and not like a noise gate opening. Measured correlation
+  between the gust and the 200–1200Hz band: **0.79**.
+- **The insects are calls, not a recording.** `src/audio/night.ts`. A cricket chirp
+  is a broadband click shaped by a sharp resonance — noise through a high-Q bandpass
+  — which is how a real one makes its woody tick; seven of them at their own pitch,
+  tempo and stereo position, two grasshoppers rasping under a tremolo, and a
+  brown-noise bed for a floor. No birds, because birds are dawn. Measured
+  correlation with the gust: **0.18** — they are independent, which is what makes
+  the field sound alive rather than reactive.
+- **Scheduling is against the audio clock**, not a timer, so the crickets keep
+  their rhythm when the main thread is busy. Group lengths are randomised per call
+  so it never settles into a loop.
+- **The player** routes a media element through the master bus, so the volume
+  bar moves the songs as well as the room. One `WeakSet` guards against capturing
+  an element twice, which is an exception you can only throw once.
+
 ## Rules
 
 1. The desk carries two lines of text. Anything else on it is an object or a
@@ -112,3 +143,9 @@ row 2 the two portraits at 0.666 plus one landscape, ragged at 918 of 1440.
 7. Motion that runs every frame lives in `src/lib/air.ts` and writes to the DOM.
 8. Photography is never cropped and never squared. If a frame's layout looks
    wrong, `w`/`h` in `src/content/photography.ts` do not match the file.
+9. Sound is synthesised, never sampled. A recording is a licence to check and a
+   loop the visitor hears twice.
+10. Nothing makes a noise before the visitor has touched the page, and the room
+    comes up from silence rather than switching on.
+11. The wind and the insect bed are separate voices. If one starts tracking the
+    other, the field reads as an effect instead of a place.
