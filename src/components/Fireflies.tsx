@@ -85,7 +85,7 @@ const Swarm = memo(function Swarm({ bugs }: { bugs: Bug[] }) {
                 height: b.core,
                 marginLeft: -b.core / 2,
                 marginTop: -b.core / 2,
-                background: `radial-gradient(closest-side, #fffaf0 58%, ${b.hue})`,
+                background: `radial-gradient(closest-side, #fffaf0 80%, ${b.hue} 100%)`,
                 ["--flick-dur" as string]: `${b.flickDur}s`,
               }}
             />
