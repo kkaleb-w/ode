@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import { TRACKS, type Track } from "@/content/music";
+import { TRACKS, artSrc, type Track } from "@/content/music";
 import { attachMusic, getSound, setMuted, setVolume, subscribeSound, unlockSound } from "@/audio/engine";
 import { useMedia } from "@/lib/useMedia";
 
@@ -27,11 +27,12 @@ function initials(t: Track): string {
  */
 function AlbumArt({ track, playing }: { track: Track; playing: boolean }) {
   const [broken, setBroken] = useState(false);
+  const art = artSrc(track);
 
-  if (track.art && !broken) {
+  if (!broken) {
     return (
       <img
-        src={track.art}
+        src={art}
         alt=""
         className="absolute inset-0 size-full object-cover"
         onError={() => setBroken(true)}
@@ -181,7 +182,7 @@ export function SoundPill() {
           aria-label={playing ? "Pause" : "Play"}
           className="relative size-9 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15 transition-transform duration-300 hover:scale-[1.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
         >
-          <AlbumArt track={track} playing={playing} />
+          <AlbumArt key={track.id} track={track} playing={playing} />
           <span
             className="absolute inset-0 grid place-items-center bg-black/45 transition-opacity duration-300"
             style={{ opacity: playing ? 0 : 1 }}

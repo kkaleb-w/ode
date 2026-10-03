@@ -64,6 +64,18 @@ Songs are **not** in the repository. `public/audio/` is gitignored, and
 `scripts/fetch-music.sh` fetches them locally. YouTube bot-walls a datacenter IP,
 so that script needs a cookies file from a signed-in browser.
 
+If you already have the files — bought, ripped, whatever — use the other one:
+
+```
+./scripts/install-audio.sh ~/Downloads/*.mp3
+./scripts/install-audio.sh ~/Downloads/track.m4a something-in-the-orange
+```
+
+It takes anything ffmpeg reads, works out which track it is from the filename
+("Zach Bryan - Pink Skies (Lyrics).webm" finds its own slot), converts to mp3,
+lifts any embedded cover art out as the album tile, rebuilds, and leaves anything
+it cannot place in `public/audio/_unmatched/` rather than dropping it.
+
 ## Pages
 
 - `/photography` — a justified gallery: rows solved to fill the width exactly, at

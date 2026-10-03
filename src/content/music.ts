@@ -82,3 +82,13 @@ export const TRACKS: Track[] = [
 ];
 
 export const slugOf = (t: Track) => t.src.split("/").pop() ?? t.id;
+
+/**
+ * Where the album tile comes from.
+ *
+ * `scripts/install-audio.sh` lifts any embedded cover art out of the file it is
+ * given and writes it next to the mp3, so the tile is simply the track's own path
+ * with a .jpg on the end. If that file is not there, nothing breaks — the player
+ * falls back to a tile drawn from `accent`, which is why this can be a guess.
+ */
+export const artSrc = (t: Track) => t.art ?? t.src.replace(/\.[a-z0-9]+$/i, ".jpg");
