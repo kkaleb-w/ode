@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────────
+   ode — the desk at 1am
+   One world: near-black ground, one amber light, bone voice, ash
+   chrome. Nothing else is allowed a colour.
+   ───────────────────────────────────────────────────────────── */
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Spectral", ui-serif, Georgia, serif;
+  --font-mono: "Fragment Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-heading: "Spectral", ui-serif, Georgia, serif;
+
+  --color-bone: #e9e4da;
+  --color-ash: #8b8578;
+  --color-amber: #f5a623;
+  --color-paper: #ddd6c6;
+  --color-ink: #16171c;
+  --color-moss: #8fdc8f;
+  --color-rosary: #d9b8ff;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root,
+.dark {
+  --background: #06070a;
+  --foreground: #e9e4da;
+  --card: #0c0d13;
+  --card-foreground: #e9e4da;
+  --popover: #0b0c11;
+  --popover-foreground: #e9e4da;
+  --primary: #f5a623;
+  --primary-foreground: #0a0a0a;
+  --secondary: #16181f;
+  --secondary-foreground: #e9e4da;
+  --muted: #12141a;
+  --muted-foreground: #8b8578;
+  --accent: #1a1d26;
+  --accent-foreground: #e9e4da;
+  --destructive: #e0644f;
+  --border: rgba(233, 228, 218, 0.09);
+  --input: rgba(233, 228, 218, 0.12);
+  --ring: rgba(245, 166, 35, 0.55);
+  --radius: 0.7rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/60;
+  }
+
+  html {
+    @apply font-sans;
+    background: #06070a;
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    margin: 0;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* The desk never scrolls. Pages do. */
+  html.desk-locked,
+  html.desk-locked body {
+    overflow: hidden;
+    height: 100dvh;
+    scrollbar-width: none;
+  }
+  html.desk-locked::-webkit-scrollbar,
+  html.desk-locked body::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::selection {
+    background: rgba(245, 166, 35, 0.28);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+  }
+
+  .label-caps {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .mote {
+    animation-name: mote-drift;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+  }
+
+  .edge-fade {
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 84%, transparent);
+  }
+}
+
+@keyframes mote-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.32;
+  }
+  88% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(calc(var(--drift, 40px) * -1), -160px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes breathe-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.07);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.95;
+  }
+  42% {
+    opacity: 0.87;
+  }
+  46% {
+    opacity: 0.99;
+  }
+  61% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes draw-ink {
+  from {
+    stroke-dashoffset: 1400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mote {
+    animation: none;
+    opacity: 0.18;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
