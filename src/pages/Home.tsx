@@ -7,7 +7,7 @@ import { Grain } from "@/components/Grain";
 import { CommandPalette, usePalette } from "@/components/CommandPalette";
 import { MobileMarks } from "@/components/MobileMarks";
 import { DESK, greeting } from "@/content/site";
-import { formatHour, useBreeze, useClock, useSettled } from "@/lib/hooks";
+import { formatHour, useClock, useSettled } from "@/lib/hooks";
 import { useMedia } from "@/lib/useMedia";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +24,6 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function Home() {
   const now = useClock();
   const isDesk = useMedia("(min-width: 900px)");
-  const breeze = useBreeze(isDesk);
   const settled = useSettled(180);
   const [paletteOpen, setPaletteOpen] = usePalette();
 
@@ -42,7 +41,7 @@ export default function Home() {
       transition={{ duration: 0.5, ease: EASE }}
       className={cn("relative w-full bg-background", isDesk ? "h-[100dvh] overflow-hidden" : "h-[100dvh]")}
     >
-      <Wallpaper variant={isDesk ? "night" : "sunset"} withDoor={isDesk} />
+      <Wallpaper variant={isDesk ? "night" : "sunset"} />
       <Grain />
 
       <motion.h1
@@ -81,7 +80,7 @@ export default function Home() {
             className="absolute z-20 [@media(max-height:800px)]:scale-[0.84]"
             style={{ left: folder.left, top: folder.top }}
           >
-            <FolderIcon folder={folder} index={i} breeze={breeze} settled={settled} />
+            <FolderIcon folder={folder} index={i} settled={settled} />
           </div>
         ))
       ) : (

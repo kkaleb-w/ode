@@ -4,8 +4,8 @@ An ode to myself. A night photograph as a wallpaper, a handful of folders, and
 one lit window that is a door.
 
 - **The desk** (`/`) — full-bleed photograph, no scroll, no scrollbar. Manila
-  folders hinge open when you come near; the lit window in the picture opens the
-  about page. `⌘K` (or `ctrl+K`) opens the one place the sections are named.
+  folders hinge open when you come near; `⌘K` (or `ctrl+K`) opens the one place
+  the sections are named.
 - **Phones** get a different room, not a smaller one: the sunset photograph, and
   four emblems along its foot.
 - `/photography` — square tiles butted together, no gaps or borders.
@@ -25,25 +25,28 @@ npm run dev
 Nothing on it is a card. Two lines of text — the title top-left, the hour
 top-right — and four manila folders carrying a drawn emblem each (aperture,
 branch, beads, window) instead of a name. Hover a folder and its flap hinges
-open; click it and it becomes the page. The single lit window in the night
-photograph is the way to About. `⌘K` opens the one place the sections are
-written down.
+open and the page's name lifts out on a sheet of paper; click it and it becomes
+the page. `⌘K` opens the one place the sections are written down.
 
 Phones get the sunset photograph instead, and the four emblems printed along its
 dark foot. No bar, no cards, no scroll.
 
-The pointer is a pixel arrow drawn in `public/cursors/`. The folders lean into
-the breeze. There are fireflies.
+The pointer is drawn in DOM — a dot at the exact position and a ring trailing it
+on a spring, because the system cursor is hidden. Fireflies rise out of the
+bottom of the screen, mostly keeping low over the dark end of the photograph. The
+folders lean into the wind, which arrives in bursts.
 
 ## Pages
 
-- `/photography` — square tiles butted together, no gaps or borders. Hover: the
-  tile grows 2% and tilts 5°, and names itself along its bottom edge. Captions
-  live in `src/content/photography.ts` — change them there.
+- `/photography` — a justified gallery: rows solved to fill the width exactly, at
+  each picture's own aspect ratio, nothing cropped, nothing squared. Hover: the
+  tile grows 2% and tilts 5°, and names itself along its bottom edge. Click: it
+  opens full-screen. Captions and the pixel dimensions live in
+  `src/content/photography.ts` — change them there.
 - `/code` — the year as a field of lit windows, live from GitHub, plus the real
   repositories.
 - `/rosaria` — three screenshots of the app, and two links.
-- `/about` — the window, opened. One paragraph, two links.
+- `/about` — one paragraph, two links.
 
 ## Stack
 

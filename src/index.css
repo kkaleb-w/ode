@@ -143,35 +143,20 @@
     caret-color: #e9e4da;
   }
 
-  /* the pointer is a 1990s arrow, drawn pixel by pixel in public/cursors/,
-     with a pointing hand over anything pressable. Not gated on pointer type:
-     a touch device ignores `cursor` entirely, and gating it behind
-     @media (pointer: fine) only breaks it on hardware that reports otherwise */
+  /* The system pointer is hidden and drawn in DOM instead — see
+     src/components/Cursor.tsx. Declared here, not in a class added by React, so
+     the native arrow never flashes before hydration. */
   html,
-  body {
-    cursor: url("/cursors/arrow.png") 0 0, auto;
-  }
+  body,
   a,
   button,
   [role="button"],
   select,
   summary,
-  label {
-    cursor: url("/cursors/hand.png") 5 1, pointer;
-  }
-  @supports (cursor: image-set(url("") 1x)) {
-    html,
-    body {
-      cursor: image-set(url("/cursors/arrow.png") 1x, url("/cursors/arrow@2x.png") 2x) 0 0, auto;
-    }
-    a,
-    button,
-    [role="button"],
-    select,
-    summary,
-    label {
-      cursor: image-set(url("/cursors/hand.png") 1x, url("/cursors/hand@2x.png") 2x) 5 1, pointer;
-    }
+  label,
+  input,
+  textarea {
+    cursor: none;
   }
 
   html {
@@ -207,11 +192,19 @@
     text-transform: uppercase;
   }
 
-  .mote {
-    animation-name: mote-drift;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    will-change: transform, opacity;
+  /* ── fireflies ──────────────────────────────────────────────
+     Three nested animations per insect so the motion never reads as
+     a loop: the outer element climbs, the middle one sways, the core
+     blinks. Sway is inherited by the gust whenever one passes. */
+  .ff-rise {
+    animation: ff-rise var(--dur, 30s) linear infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  .ff-sway {
+    animation: ff-sway var(--sway-dur, 7s) ease-in-out infinite;
+  }
+  .ff-core {
+    animation: ff-blink var(--blink-dur, 4.5s) ease-in-out infinite;
   }
 
   .edge-fade {
@@ -219,23 +212,52 @@
   }
 }
 
-@keyframes mote-drift {
+@keyframes ff-rise {
   0% {
     transform: translate3d(0, 0, 0);
     opacity: 0;
   }
-  12% {
-    opacity: 0.55;
+  9% {
+    opacity: 1;
   }
-  50% {
-    opacity: 0.32;
+  78% {
+    opacity: 1;
   }
-  88% {
+  95% {
     opacity: 0.5;
   }
   100% {
-    transform: translate3d(calc(var(--drift, 40px) * -1), -160px, 0);
+    transform: translate3d(0, calc(-1 * var(--rise, 50vh)), 0);
     opacity: 0;
+  }
+}
+
+@keyframes ff-sway {
+  0%,
+  100% {
+    transform: translate3d(calc(-1 * var(--sway, 18px)), 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--sway, 18px), 0, 0);
+  }
+}
+
+@keyframes ff-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 0.4;
+  }
+  45% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.58;
+  }
+  71% {
+    opacity: 1;
   }
 }
 
@@ -265,9 +287,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mote {
+  .ff-rise,
+  .ff-sway,
+  .ff-core {
     animation: none;
-    opacity: 0.18;
   }
   *,
   *::before,

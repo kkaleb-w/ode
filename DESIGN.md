@@ -42,24 +42,32 @@ face to do.
 
 - **Film grain** at 15% soft-light over everything, and a vignette *under* the
   furniture so the corners go quiet without dimming words.
-- **Fireflies**: 14 amber specks drifting up-left on 26–48s loops. The only
-  ambient motion on the desk; stops entirely under `prefers-reduced-motion`.
-- **Breeze**: pointer position tilts the folder and shifts it up to 2.4px.
-  Smoothed at 6% per frame; off for reduced motion.
+- **Fireflies**: 34 of them, rising out of the bottom edge — the swarm lives low,
+  over the dark end of the photograph, and only a handful travel the full height.
+  Each runs three nested animations (climb, sway, blink) so no two cycles match,
+  and the whole swarm drifts sideways when a gust passes. Under
+  `prefers-reduced-motion` ten of them stop and sit as steady lights.
+- **The wind**: `src/lib/air.ts`. A steady lean toward the pointer, and a **gust**
+  that arrives in bursts — a 400ms push, a short hold, a ~1–2s let-go, then two
+  to seven seconds of nothing. Measured on a parked pointer: the folder's
+  rotation sweeps 1.74° and its x-position 5px across a burst.
+- **The pointer**: the system cursor is hidden and drawn in DOM — a dot at the
+  exact position (so aiming and dragging never lose precision) plus a ring that
+  trails on a spring: `v += (target − x) · 0.14`, then `v ×= 0.66`. It lagged
+  300px behind a 700px flick and settled with a 1px overshoot. It grows to 46px
+  over anything pressable, and a gust nudges it 5px.
 - **The folder**: manila, not glass. One silhouette — a tab standing proud on the
   left, a body below it, a flap hinged along its bottom edge that swings to
-  `rotateX(-34deg)` on hover and lets a paper sheet lift out. Emblem printed on
-  the flap, because there is no label. A blurred contact shadow sits under it so
-  it rests on the desk instead of floating over it.
-- **The pointer** is a 1990s arrow drawn pixel by pixel in `public/cursors/`
-  (11×19 and 13×18, plus 2× for retina via `image-set`), with a pointing hand over
-  anything pressable.
-- **The window** on `/` is a hotspot mapped to the pixel: `useCoverBox` computes
-  where an `object-fit: cover` image lands, so the door sits on the real lit
-  window at 67.5% / 35.4% of the photograph at any viewport shape. Nothing is
-  drawn on it — no glow, no label, only a hairline ring on hover.
+  `rotateX(-34deg)` on hover and lets a sheet lift out carrying the page's name
+  in Endless. A blurred contact shadow sits under it so it rests on the desk.
 - **The chase light** on `/code`: one 11s sweep every 18s across the year grid,
   so "now" is visible without reading a label.
+- **Nothing is drawn on the photograph.** No glow, no invented light, and no
+  hotspot either: the lit window is not a door any more.
+
+The wind, the swarm and the cursor all read `src/lib/air.ts` and write straight to
+the DOM. None of them goes through React state — moving four folders by re-rendering
+sixty times a second is a cost with nothing to show for it.
 
 ## Composition
 
@@ -77,17 +85,24 @@ cards, no bar, no scroll.
 never quite leave the room. Each page carries exactly two pieces of interface:
 the way back, and its name.
 
-**Photography** is the exception to the page column: square tiles butted together
-with no gaps, no borders, no rounding, capped at 1280px so no photograph is ever
-shown larger than its source.
+**Photography** is the exception to the page column: a justified gallery. Every
+row is solved so it fills the full width exactly, at the pictures' own aspect
+ratios, with nothing between them and nothing cropped. The last row keeps the
+target height and simply stops short of the right edge. Verified at 1440: row 1
+three frames at ratio 1.501, 320px tall, summing to exactly 1440 with 0px of gap;
+row 2 the two portraits at 0.666 plus one landscape, ragged at 918 of 1440.
 
 ## Rules
 
 1. The desk carries two lines of text. Anything else on it is an object or a
    drawing.
-2. Emblems name the folders. Never add labels back.
+2. Emblems name the folders. The sheet inside spells it out on hover. Never add
+   a label back to the desk.
 3. Paper, not glass. Cards are not furniture.
 4. Depth is an offset plus a blur, plus a contact shadow. A zero-offset halo is
    decoration.
 5. Text on the photograph sits at white/72 or above — measured 6.5:1 at worst.
-6. Nothing is claimed that isn't true — see `ASSETS.md` for every raster.
+6. The photograph is the ground. Nothing is drawn over it.
+7. Motion that runs every frame lives in `src/lib/air.ts` and writes to the DOM.
+8. Photography is never cropped and never squared. If a frame's layout looks
+   wrong, `w`/`h` in `src/content/photography.ts` do not match the file.

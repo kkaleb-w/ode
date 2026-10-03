@@ -40,36 +40,9 @@ export function useSettled(delay = 120): boolean {
   return settled;
 }
 
-/** Normalised pointer position (-1..1 on each axis) for the breeze. */
-export function useBreeze(enable: boolean): { x: number; y: number } {
-  const [p, setP] = useState({ x: 0, y: 0 });
-  const reduced = usePrefersReducedMotion();
-  useEffect(() => {
-    if (!enable || reduced) return;
-    let raf = 0;
-    let target = { x: 0, y: 0 };
-    const onMove = (e: PointerEvent) => {
-      target = {
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1,
-      };
-      if (!raf) raf = window.requestAnimationFrame(tick);
-    };
-    let cur = { x: 0, y: 0 };
-    const tick = () => {
-      cur = { x: cur.x + (target.x - cur.x) * 0.06, y: cur.y + (target.y - cur.y) * 0.06 };
-      setP(cur);
-      if (Math.abs(target.x - cur.x) > 0.001 || Math.abs(target.y - cur.y) > 0.001) {
-        raf = window.requestAnimationFrame(tick);
-      } else {
-        raf = 0;
-      }
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      if (raf) window.cancelAnimationFrame(raf);
-    };
-  }, [enable, reduced]);
-  return p;
-}
+/**
+ * The wind and the pointer live in `src/lib/air.ts`, deliberately outside React:
+ * they change every frame, and the consumers (folders, fireflies, cursor) write
+ * straight to the DOM through `subscribeAir` instead of re-rendering sixty times
+ * a second.
+ */
