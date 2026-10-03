@@ -51,6 +51,13 @@ face to do.
   seconds breaks into a **burst of flickers** — five quick dips inside an 18%
   window of the cycle — before going steady again. Three nested animations, so no
   two cycles line up.
+- **Leaving a page, the swarm sinks.** On any route change the whole field drifts
+  to the foot of the screen — 4.6s of travel, measured top edge 8px → 683px on a
+  900px viewport — while it thins out, and then the loop starts over so the next
+  page's fireflies come up from the bottom rather than appearing mid-flight.
+  Nothing happens on the first load, because the first load is not a departure.
+  The dive runs on its own wrapper: one transform is the gust, one is the dive,
+  and neither can overwrite the other.
 - **The wind**: `src/lib/air.ts`. A steady lean toward the pointer, and a gust
   that arrives as a **train of pushes**, never one shove: two to four pushes of
   differing strength (120–290ms each) separated by 70–220ms, then 3.4–8.6s of
@@ -115,16 +122,16 @@ nothing that loops audibly after the second minute.
   the push builds, and a hiss that appears only at the top of one. That is why a
   gust sounds like a gust and not like a noise gate opening. Measured correlation
   between the gust and the 200–1200Hz band: **0.79**.
-- **The insects are calls, not a recording.** `src/audio/night.ts`. A cricket chirp
-  is a broadband click shaped by a sharp resonance — noise through a high-Q bandpass
-  — which is how a real one makes its woody tick; seven of them at their own pitch,
-  tempo and stereo position, two grasshoppers rasping under a tremolo, and a
-  brown-noise bed for a floor. No birds, because birds are dawn. Measured
-  correlation with the gust: **0.18** — they are independent, which is what makes
-  the field sound alive rather than reactive.
-- **Scheduling is against the audio clock**, not a timer, so the crickets keep
-  their rhythm when the main thread is busy. Group lengths are randomised per call
-  so it never settles into a loop.
+- **The bed is a recording.** `src/audio/ambience.ts` loads, decodes and loops it
+  — three minutes of a night, so the seam never announces itself. Its level is
+  **measured, not guessed**: the decoded buffer's own RMS is computed once and the
+  gain is derived from it, so swapping the file for a louder or quieter one still
+  lands in the same place instead of burying the music. Measured with nothing else
+  playing: **−41 dBFS**, roughly 15dB under a track.
+- **The wind is synthesised** from the gust envelope, which is the one thing a
+  sample cannot do — no loop follows a gust that never repeats.
+- **Scheduling** is against the audio clock, not a timer, so nothing drifts when
+  the main thread is busy.
 - **The player** routes a media element through the master bus, so the volume
   bar moves the songs as well as the room. One `WeakSet` guards against capturing
   an element twice, which is an exception you can only throw once.
@@ -143,9 +150,10 @@ nothing that loops audibly after the second minute.
 7. Motion that runs every frame lives in `src/lib/air.ts` and writes to the DOM.
 8. Photography is never cropped and never squared. If a frame's layout looks
    wrong, `w`/`h` in `src/content/photography.ts` do not match the file.
-9. Sound is synthesised, never sampled. A recording is a licence to check and a
-   loop the visitor hears twice.
+9. The wind is synthesised, never sampled: no loop can follow a gust that does
+   not repeat. The bed is a recording, and its level is measured from the file
+   rather than hand-picked, so a swapped file still sits right.
 10. Nothing makes a noise before the visitor has touched the page, and the room
     comes up from silence rather than switching on.
-11. The wind and the insect bed are separate voices. If one starts tracking the
-    other, the field reads as an effect instead of a place.
+11. Leaving a page, the swarm goes down. Every route change is a departure, and
+    the fireflies should arrive at the next page from the bottom edge.

@@ -1,5 +1,5 @@
 import { subscribeAir } from "@/lib/air";
-import { createNight } from "./night";
+import { createAmbience } from "./ambience";
 import { createWind } from "./wind";
 
 /**
@@ -7,8 +7,8 @@ import { createWind } from "./wind";
  *
  * Browsers will not let a page make noise before the visitor has done something,
  * so nothing is built until the first gesture — and the whole graph is built at
- * once, then left running. Gusts, insects and music are separate buses under one
- * master, which is what the volume bar moves.
+ * once, then left running. Gusts, the night bed and music are separate buses
+ * under one master, which is what the volume bar moves.
  *
  * The wind is the reason this is a module and not a hook: it reads the same gust
  * envelope that moves the folders, every frame, and a React re-render per frame
@@ -43,7 +43,7 @@ let master: GainNode | null = null;
 let ambience: GainNode | null = null;
 let musicBus: GainNode | null = null;
 let wind: ReturnType<typeof createWind> | null = null;
-let night: { stop: () => void } | null = null;
+let bed: ReturnType<typeof createAmbience> extends Promise<infer T> ? T | null : never = null;
 let unsub: (() => void) | null = null;
 
 const subs = new Set<() => void>();
@@ -92,7 +92,11 @@ export function unlockSound() {
     musicBus.connect(master);
 
     wind = createWind(ctx, ambience);
-    night = createNight(ctx, ambience);
+    // decoding is async; the bed arrives a beat after the wind does
+    const bus = ambience;
+    void createAmbience(ctx, bus).then((a) => {
+      bed = a;
+    });
     unsub = subscribeAir((air) => {
       if (ctx) wind?.follow(air.gust, ctx.currentTime);
     });
@@ -136,8 +140,8 @@ export function setVolume(volume: number) {
 export function teardownSound() {
   unsub?.();
   unsub = null;
-  night?.stop();
-  night = null;
+  bed?.stop();
+  bed = null;
   wind?.stop();
   wind = null;
   void ctx?.close();

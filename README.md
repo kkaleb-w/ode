@@ -50,15 +50,15 @@ nothing to download.
   driven every frame by the gust envelope in `src/lib/air.ts` — a low body, a
   narrow resonant whistle, and a hiss that only exists at the peak of a push.
   Measured: correlation of 0.79 between the gust and the 200–1200Hz band.
-- **The insects are cricket and grasshopper calls, not a field recording.**
-  `src/audio/night.ts`. A cricket chirp is a broadband click through a sharp
-  resonance, repeated in groups at seven different pitches, tempos and stereo
-  positions; two grasshoppers rasp underneath; a brown-noise bed gives it a floor.
-  No birds. Measured: correlation of 0.18 with the gust — they are independent, as
-  they should be.
-- **The player** is the pill. Back, record, forward, speaker. Pressing the record
-  plays and pauses, the speaker slides the volume bar out on approach, and the
-  bar moves the master — so it moves everything.
+- **The night bed is a recording** picked by Kaleb, not a synthesiser:
+  `src/audio/ambience.ts` loads, decodes and loops three minutes of it. The level
+  is **measured from the file** rather than hand-picked, so swapping in a louder or
+  quieter recording still lands in the same place. Measured alone: **−41 dBFS**,
+  about 15dB under a track.
+- **The player** is the pill, bottom right. Back, record, forward, speaker.
+  Pressing the record plays and pauses, the speaker slides the volume bar out on
+  approach, and the bar moves the master — so it moves everything. On a phone it
+  rides above the emblem row instead of sitting on it.
 
 Songs are **not** in the repository. `public/audio/` is gitignored, and
 `scripts/fetch-music.sh` fetches them locally. YouTube bot-walls a datacenter IP,

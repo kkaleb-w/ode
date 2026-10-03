@@ -170,7 +170,7 @@ export function SoundPill() {
   const silent = sound.muted || sound.volume === 0;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-4 z-[80] flex flex-col items-center gap-2 px-3 md:bottom-6">
+    <div className="pointer-events-none fixed right-4 bottom-[calc(env(safe-area-inset-bottom)+5.75rem)] z-[80] flex flex-col items-end gap-2 md:right-7 md:bottom-6">
       <div className="pointer-events-auto group flex items-center gap-0.5 rounded-full border border-white/10 bg-black/78 px-1.5 py-1.5 shadow-[0_12px_34px_rgba(0,0,0,0.6)] backdrop-blur-md">
         <IconButton label="Previous track" onClick={() => goTo(index - 1)}>
           <SkipBack className="size-[15px]" strokeWidth={1.7} />

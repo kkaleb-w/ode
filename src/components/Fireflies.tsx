@@ -1,4 +1,5 @@
-import { memo, useEffect, useMemo, useRef } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { usePrefersReducedMotion } from "@/lib/hooks";
 import { subscribeAir } from "@/lib/air";
 
@@ -110,7 +111,11 @@ const Swarm = memo(function Swarm({ bugs }: { bugs: Bug[] }) {
 export function Fireflies() {
   const reduced = usePrefersReducedMotion();
   const bugs = useMemo(() => makeBugs(), []);
+  const { pathname } = useLocation();
   const swarm = useRef<HTMLDivElement>(null);
+  const descend = useRef<HTMLDivElement>(null);
+  const [epoch, setEpoch] = useState(0);
+  const seen = useRef(pathname);
 
   useEffect(() => {
     const el = swarm.current;
@@ -119,6 +124,58 @@ export function Fireflies() {
       el.style.transform = `translate3d(${(air.gust * 7).toFixed(2)}px, 0, 0)`;
     });
   }, [reduced]);
+
+  /**
+   * Changing page, the swarm moves.
+   *
+   * Down when you go deeper into the site, up when you come back to the desk:
+   * the fireflies sink away from a page you are leaving and rise back into the
+   * one you are returning to. Either way the loop then starts over, so the next
+   * page's swarm arrives from the edge it was sent to rather than appearing
+   * wherever it happened to be. Five seconds, and nothing happens on the first
+   * load because the first load is not a departure from anywhere.
+   */
+  useEffect(() => {
+    const el = descend.current;
+    if (!el || reduced) return;
+    if (seen.current === pathname) return;
+    seen.current = pathname;
+
+    // home is up, everything else is down
+    const toHome = pathname === "/";
+    const travel = toHome ? "translateY(-78vh)" : "translateY(76vh)";
+
+    el.style.transition = "none";
+    el.style.transform = "translateY(0)";
+    el.style.opacity = "1";
+    // Force the start state to be committed. Without this the browser sees one
+    // style change in the same frame as the transition and simply jumps to the
+    // end — the swarm teleports instead of moving.
+    void el.offsetWidth;
+
+    const raf = requestAnimationFrame(() => {
+      el.style.transition = "transform 4.6s cubic-bezier(0.45, 0, 0.55, 1), opacity 1.5s ease-in 3.1s";
+      el.style.transform = travel;
+      el.style.opacity = "0";
+    });
+    const done = window.setTimeout(() => {
+      el.style.transition = "none";
+      el.style.transform = "translateY(0)";
+      el.style.opacity = "0";
+      setEpoch((n) => n + 1); // remount: every one starts over
+      void el.offsetWidth;
+      // and come back in rather than appearing
+      requestAnimationFrame(() => {
+        el.style.transition = "opacity 1.2s ease-out";
+        el.style.opacity = "1";
+      });
+    }, 4700);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(done);
+    };
+  }, [pathname, reduced]);
 
   if (reduced) {
     // no travel and no flicker: a few steady lights, scattered up the frame
@@ -144,8 +201,10 @@ export function Fireflies() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-30 overflow-hidden">
-      <div ref={swarm} className="absolute inset-0 will-change-transform">
-        <Swarm bugs={bugs} />
+      <div ref={descend} className="absolute inset-0 will-change-transform">
+        <div ref={swarm} className="absolute inset-0 will-change-transform">
+          <Swarm key={epoch} bugs={bugs} />
+        </div>
       </div>
     </div>
   );

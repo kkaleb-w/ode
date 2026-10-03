@@ -75,10 +75,14 @@ export function FolderIcon({
           {/* pressed crease down the flap's edge — the detail that says paper */}
           <div className="absolute inset-x-0 top-[22px] bottom-0 rounded-t-[2px] rounded-b-[3px] opacity-[0.5] [background:linear-gradient(180deg,transparent_0_2px,rgba(63,50,34,0.10)_2px_3px,transparent_3px)]" />
 
-          {/* ── the sheet that lifts out, carrying the page name ── */}
-          <div className="absolute inset-x-[15px] top-[26px] h-[86px] overflow-hidden">
-            <div className="translate-y-6 opacity-0 transition-all duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
-              <div className="flex h-[86px] items-center justify-center rounded-[2px] border border-ink-brown/25 bg-[#ded3bb] shadow-[0_8px_16px_-8px_rgba(0,0,0,0.85)]">
+          {/* ── the sheet that lifts out, carrying the page name ──
+               It has to come all the way out to be read. The flap swings to
+               -34deg, which uncovers only the top fifth of the body, so a sheet
+               that merely rises into place stays behind the flap and the name is
+               never actually visible. This one stands up out of the folder. */}
+          <div className="absolute inset-x-[15px] top-[20px]">
+            <div className="translate-y-5 opacity-0 transition-[transform,opacity] duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[84px] group-hover:opacity-100 group-focus-visible:-translate-y-[84px] group-focus-visible:opacity-100">
+              <div className="flex h-[78px] items-center justify-center rounded-[2px] border border-ink-brown/25 bg-[#ded3bb] shadow-[0_10px_20px_-10px_rgba(0,0,0,0.9)]">
                 <span className="font-display text-[1.05rem] tracking-[0.01em] text-ink-brown/85 lowercase">
                   {folder.name}
                 </span>

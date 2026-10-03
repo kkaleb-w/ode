@@ -30,11 +30,8 @@ TRACKS=(
   "lucky-enough|Zach Bryan Lucky Enough poem"
   "fear-and-fridays|Zach Bryan Fear and Fridays poem"
   "something-in-the-orange|Zach Bryan Something in the Orange"
-  "heading-south|Zach Bryan Heading South"
   "sun-to-me|Zach Bryan Sun to Me"
-  "oklahoma-smokeshow|Zach Bryan Oklahoma Smokeshow"
-  "burn-burn-burn|Zach Bryan Burn Burn Burn"
-  "pink-skies|Zach Bryan Pink Skies"
+  "i-remember-everything|Zach Bryan Kacey Musgraves I Remember Everything"
 )
 
 if [[ "${1:-}" == "--list" ]]; then

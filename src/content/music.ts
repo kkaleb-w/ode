@@ -23,7 +23,7 @@ export interface Track {
 export const TRACKS: Track[] = [
   {
     id: "lucky-enough",
-    title: "Lucky Enough",
+    title: "Lucky Enough (Poem)",
     artist: "Zach Bryan",
     src: "/audio/lucky-enough.mp3",
     accent: "#c8a24a",
@@ -31,7 +31,7 @@ export const TRACKS: Track[] = [
   },
   {
     id: "fear-and-fridays",
-    title: "Fear and Friday's",
+    title: "Fear and Friday's (Poem)",
     artist: "Zach Bryan",
     src: "/audio/fear-and-fridays.mp3",
     accent: "#b4763f",
@@ -45,13 +45,6 @@ export const TRACKS: Track[] = [
     accent: "#d9822b",
   },
   {
-    id: "heading-south",
-    title: "Heading South",
-    artist: "Zach Bryan",
-    src: "/audio/heading-south.mp3",
-    accent: "#8a6a3a",
-  },
-  {
     id: "sun-to-me",
     title: "Sun to Me",
     artist: "Zach Bryan",
@@ -59,25 +52,11 @@ export const TRACKS: Track[] = [
     accent: "#d9a441",
   },
   {
-    id: "oklahoma-smokeshow",
-    title: "Oklahoma Smokeshow",
-    artist: "Zach Bryan",
-    src: "/audio/oklahoma-smokeshow.mp3",
-    accent: "#a8552f",
-  },
-  {
-    id: "burn-burn-burn",
-    title: "Burn, Burn, Burn",
-    artist: "Zach Bryan",
-    src: "/audio/burn-burn-burn.mp3",
-    accent: "#c2652f",
-  },
-  {
-    id: "pink-skies",
-    title: "Pink Skies",
-    artist: "Zach Bryan",
-    src: "/audio/pink-skies.mp3",
-    accent: "#b0838f",
+    id: "i-remember-everything",
+    title: "I Remember Everything",
+    artist: "Zach Bryan & Kacey Musgraves",
+    src: "/audio/i-remember-everything.mp3",
+    accent: "#9a6fa0",
   },
 ];
 
