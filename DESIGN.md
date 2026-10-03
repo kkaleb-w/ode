@@ -71,8 +71,12 @@ face to do.
   over anything pressable, and a gust nudges it 1.5px.
 - **The folder**: manila, not glass. One silhouette — a tab standing proud on the
   left, a body below it, a flap hinged along its bottom edge that swings to
-  `rotateX(-34deg)` on hover and lets a sheet lift out carrying the page's name
-  in Endless. A blurred contact shadow sits under it so it rests on the desk.
+  `rotateX(-48deg)` on hover. The sheet of paper stays **in** the folder, as it
+  should, and carries the page's name at its top edge, which is the only part the
+  opened flap exposes. A blurred contact shadow sits under it so it rests on the
+  desk. Verified by hit test: on hover the sheet's top edge sits 20px inside the
+  folder and all nine sample points across the name return the name itself, so the
+  label is genuinely visible rather than merely present.
 - **The chase light** on `/code`: one 11s sweep every 18s across the year grid,
   so "now" is visible without reading a label.
 - **Nothing is drawn on the photograph.** No glow, no invented light, and no

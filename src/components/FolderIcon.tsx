@@ -75,15 +75,15 @@ export function FolderIcon({
           {/* pressed crease down the flap's edge — the detail that says paper */}
           <div className="absolute inset-x-0 top-[22px] bottom-0 rounded-t-[2px] rounded-b-[3px] opacity-[0.5] [background:linear-gradient(180deg,transparent_0_2px,rgba(63,50,34,0.10)_2px_3px,transparent_3px)]" />
 
-          {/* ── the sheet that lifts out, carrying the page name ──
-               It has to come all the way out to be read. The flap swings to
-               -34deg, which uncovers only the top fifth of the body, so a sheet
-               that merely rises into place stays behind the flap and the name is
-               never actually visible. This one stands up out of the folder. */}
-          <div className="absolute inset-x-[15px] top-[20px]">
-            <div className="translate-y-5 opacity-0 transition-[transform,opacity] duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[84px] group-hover:opacity-100 group-focus-visible:-translate-y-[84px] group-focus-visible:opacity-100">
-              <div className="flex h-[78px] items-center justify-center rounded-[2px] border border-ink-brown/25 bg-[#ded3bb] shadow-[0_10px_20px_-10px_rgba(0,0,0,0.9)]">
-                <span className="font-display text-[1.05rem] tracking-[0.01em] text-ink-brown/85 lowercase">
+          {/* ── the sheet, still sitting in the folder ──
+               The flap's top edge only lifts to about the middle of the body, so
+               a name centred on a tall sheet hides behind it. The sheet stays put
+               and the name moves to its top, where the opening actually is, and
+               the flap swings wider to give that top band room. */}
+          <div className="absolute inset-x-[15px] top-[22px]">
+            <div className="translate-y-4 opacity-0 transition-[transform,opacity] duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+              <div className="flex h-[74px] flex-col items-center rounded-[2px] border border-ink-brown/25 bg-[#ded3bb] pt-2 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.9)]">
+                <span className="font-display text-[1.05rem] leading-none tracking-[0.01em] text-ink-brown/85 lowercase">
                   {folder.name}
                 </span>
               </div>
@@ -92,7 +92,7 @@ export function FolderIcon({
 
           {/* ── the flap, hinged along its bottom edge ── */}
           <div
-            className="absolute inset-x-0 bottom-0 top-[26px] origin-bottom rounded-t-[2px] rounded-b-[3px] border border-kraft-shade/55 bg-gradient-to-b from-[#b09d80] to-[#8e7a5b] shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_10px_18px_-12px_rgba(0,0,0,0.9)] transition-transform duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[transform:rotateX(-34deg)] group-focus-visible:[transform:rotateX(-34deg)]"
+            className="absolute inset-x-0 bottom-0 top-[26px] origin-bottom rounded-t-[2px] rounded-b-[3px] border border-kraft-shade/55 bg-gradient-to-b from-[#b09d80] to-[#8e7a5b] shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_10px_18px_-12px_rgba(0,0,0,0.9)] transition-transform duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[transform:rotateX(-48deg)] group-focus-visible:[transform:rotateX(-48deg)]"
             style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
           >
             <span className="grain pointer-events-none absolute inset-0 rounded-[3px] opacity-[0.16] mix-blend-multiply" aria-hidden />
