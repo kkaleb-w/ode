@@ -19,7 +19,7 @@ export default function Photography() {
     <PageShell
       kicker="roll 01"
       title="photography"
-      lede="I take photographs at night, mostly of places that are about to be empty. One frame from this roll has been developed."
+      lede="One frame from this roll came out."
     >
       <div className="overflow-hidden rounded-3xl border border-bone/10 bg-[#08090d]/70 p-3 backdrop-blur-md md:p-5">
         {/* sprockets */}
@@ -81,18 +81,11 @@ export default function Photography() {
           ))}
         </div>
 
-        <div className="mt-4 flex items-center justify-between px-1 font-mono text-[0.66rem] tracking-[0.18em] text-ash/82 uppercase">
-          <span>roll 01 · night · 35mm</span>
-          <span>1 of 6 developed</span>
+        <div className="mt-4 flex items-center justify-between px-1 font-mono text-[0.68rem] tracking-[0.18em] text-white/35 lowercase">
+          <span>roll 01</span>
+          <span>1 of 6</span>
         </div>
       </div>
-
-      <p className="mt-8 max-w-[52ch] font-mono text-[0.64rem] leading-[2.1] tracking-[0.14em] text-ash/82 uppercase">
-        the undeveloped frames are real — there is nothing in them yet. add a
-        photograph by dropping the file in <span className="text-bone/85">public/photos/</span> and
-        setting its <span className="text-bone/85">src</span> in
-        <span className="text-bone/85"> src/content/photography.ts</span>.
-      </p>
 
       <Dialog open={!!loupe} onOpenChange={(o) => !o && setLoupe(null)}>
         <DialogContent
@@ -102,16 +95,15 @@ export default function Photography() {
           <DialogTitle className="sr-only">{loupe?.caption ?? "Photograph"}</DialogTitle>
           {loupe && (
             <figure>
-              <img
-                src={loupe.src}
-                alt={loupe.caption}
-                className={cn("w-full rounded-md object-cover ring-1 ring-bone/10")}
-              />
-              <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 px-1 font-mono text-[0.68rem] tracking-[0.18em] text-ash/88 uppercase">
-                <span className="text-bone/85">{loupe.stamp}</span>
-                <span>{loupe.note}</span>
-                <span className="ml-auto">{loupe.place}</span>
-              </figcaption>
+            <img
+            src={loupe.src}
+            alt={loupe.caption}
+            className={cn("w-full rounded-md object-cover ring-1 ring-white/10")}
+            />
+            <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 px-1 font-mono text-[0.62rem] tracking-[0.16em] text-white/45 lowercase">
+            <span className="text-white/75">{loupe.stamp}</span>
+            <span>{loupe.note}</span>
+            </figcaption>
             </figure>
           )}
         </DialogContent>

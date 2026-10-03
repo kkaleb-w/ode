@@ -71,7 +71,7 @@ export function Wallpaper({
           className="group absolute rounded-[3px] outline-none focus-visible:ring-2 focus-visible:ring-amber/80"
           style={doorStyle}
         >
-          <span className="absolute inset-0 rounded-[2px] ring-0 transition-shadow duration-500 group-hover:shadow-[0_0_44px_10px_rgba(245,166,35,0.42)] group-focus-visible:shadow-[0_0_44px_10px_rgba(245,166,35,0.5)]" />
+          <span className="absolute inset-0 rounded-[3px] ring-1 ring-white/15 transition-all duration-500 group-hover:ring-amber/70 group-focus-visible:ring-amber/80 group-hover:shadow-[0_0_44px_10px_rgba(245,166,35,0.42)] group-focus-visible:shadow-[0_0_44px_10px_rgba(245,166,35,0.5)]" />
           <span
             className={cn(
               "absolute -bottom-9 left-1/2 -translate-x-1/2 translate-y-1 whitespace-nowrap",

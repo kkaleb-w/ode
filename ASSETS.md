@@ -4,6 +4,7 @@ Nothing here is stock and nothing is generated. If a frame is empty, it says so.
 
 | File | Origin | Notes |
 |---|---|---|
+| `public/fonts/Endless.ttf` | **Endless**, supplied by Kaleb (Behance download) | 97 glyphs / 94 codepoints; A–Z, a–z, 0–9, ASCII punctuation only — no em dash, curly quotes, ellipsis or accents, so copy set in it avoids those characters |
 | `public/night.jpg` | **Kaleb Wright's own photograph**, supplied by him for this site | 1280×853. The site's ground. The lit window at 67.5% / 35.4% is the About door. |
 | `public/rosaria/01-home.webp` | Screenshot of the live Rosaria app (`rosaria.cc`), captured 2026-10-01 | resized to 585×1266, webp q82 |
 | `public/rosaria/02-pray.webp` | Screenshot of the live Rosaria app, captured 2026-10-01 | resized to 585×1266, webp q82 |

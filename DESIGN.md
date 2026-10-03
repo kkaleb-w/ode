@@ -27,16 +27,15 @@ paper (label, contact sheet, panel).
 
 | Face | Use | Why |
 |---|---|---|
-| **Spectral** 200/300/400 + italic | headings, verse, prose | a screen-first serif with a low-contrast, unhurried texture. It reads as written, not as marketed. |
-| **Fragment Mono** 400 | all chrome | labels, dates, meta, captions, the dock's words. Small caps, wide tracking, lowercase for names. |
-| **Geist Variable** | shadcn internals (command palette, buttons) | kept only inside the borrowed UI layer so shadcn still looks like shadcn. |
+| **Endless** 400 | the site's face: wordmark, page titles, folder names, nav, prose labels | Kaleb's own face, supplied for this site. 94 codepoints — ASCII only, so nothing set in it uses an em dash, a curly quote or an ellipsis. |
+| **Spectral** 200/300/400 + italic | the verse only | an ode reads as poetry; the serif is reserved so the quotation always lands as a different voice from the interface. |
+| **Fragment Mono** 400 | technical margin notes only: timestamps, frame numbers, contact-sheet captions, folder tabs | keeps the photographic marginalia separate from the site's voice. |
 
-Self-hosted through `@fontsource` — no external font host at runtime.
+Self-hosted: Endless from `public/fonts/`, the others through `@fontsource`. No external font host at runtime.
 
-Type scale is not a scale: the wordmark is `clamp(3.6rem, 6.2vw, 5.4rem)` at
-weight 200, every page title is `clamp(2.6rem, 6vw, 4.6rem)`, and everything
-else is 0.5–1.15rem. Hierarchy is carried by scale contrast and tracking, not by
-weight.
+Type scale is not a scale: the wordmark is `1.05rem` and page titles are
+`clamp(2.2rem, 5vw, 3.6rem)`; everything else is 0.5–1.1rem. Hierarchy is carried
+by scale contrast and tracking, not by weight — Endless ships one weight.
 
 ## Materials and motion
 

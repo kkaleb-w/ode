@@ -66,7 +66,7 @@ function Field({ days }: { days: Day[] }) {
   return (
     <div className="rounded-3xl border border-bone/10 bg-[#08090d]/70 p-4 backdrop-blur-md md:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <p className="label-caps text-ash/88">this year, so far</p>
+        <p className="label-caps text-white/50">this year</p>
         <p className="font-mono text-[0.66rem] tracking-[0.18em] text-ash/88 uppercase">
           {total} contributions
         </p>
@@ -141,8 +141,8 @@ function RepoRow({ repo }: { repo: Repo }) {
         </span>
         <ArrowUpRight className="size-3.5 text-ash transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-amber" />
       </div>
-      <p className="min-w-0 flex-1 font-serif text-[0.95rem] leading-snug text-bone/82 italic">
-        {repo.description ?? "no description yet"}
+      <p className="min-w-0 flex-1 font-serif text-[0.95rem] leading-snug text-white/60 italic">
+        {repo.description ?? ""}
       </p>
       <div className="flex shrink-0 items-center gap-4 font-mono text-[0.68rem] tracking-[0.16em] text-ash/82 uppercase">
         {repo.language && <span>{repo.language}</span>}
@@ -166,7 +166,7 @@ function RepoRow({ repo }: { repo: Repo }) {
 export default function Code() {
   const [days, setDays] = useState<Day[]>(SNAPSHOT_DAYS);
   const [repos, setRepos] = useState<Repo[]>(SNAPSHOT_REPOS);
-  const [live, setLive] = useState(false);
+  const [, setLive] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -192,19 +192,13 @@ export default function Code() {
 
   return (
     <PageShell
-      kicker="code"
-      title="the work"
-      lede="Small, deliberate software. Most of it is one app I care about and a few things I built to learn something."
+      kicker=""
+      title="code"
+      lede="Everything I have written, and when."
     >
       <Field days={days} />
 
-      <div className="mt-14">
-        <div className="flex items-baseline justify-between">
-          <p className="label-caps text-ash/88">repositories</p>
-          <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ash/82 uppercase">
-            {live ? "live from github" : "saved snapshot"}
-          </p>
-        </div>
+      <div className="mt-12">
         <div className="mt-3">
           {repos.map((r) => (
             <RepoRow key={r.name} repo={r} />
@@ -213,9 +207,9 @@ export default function Code() {
             href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.66rem] tracking-[0.2em] text-amber uppercase transition-colors hover:border-amber"
+            className="mt-6 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.62rem] tracking-[0.2em] text-amber lowercase transition-colors hover:border-amber"
           >
-            all of it on github
+            github
             <ArrowUpRight className="size-3.5" />
           </a>
         </div>

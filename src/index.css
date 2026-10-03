@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,13 +8,27 @@
    ode — the desk at 1am
    One world: near-black ground, one amber light, bone voice, ash
    chrome. Nothing else is allowed a colour.
+
+   Faces: Endless (the site's own face, supplied by Kaleb) for
+   everything structural; Spectral only for the verse, because an
+   ode reads as poetry; Fragment Mono only for technical margin
+   notes (frame numbers, timestamps, contact-sheet captions).
    ───────────────────────────────────────────────────────────── */
 
+@font-face {
+  font-family: "Endless";
+  src: url("/fonts/Endless.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Endless", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Endless", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Spectral", ui-serif, Georgia, serif;
   --font-mono: "Fragment Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-heading: "Spectral", ui-serif, Georgia, serif;
+  --font-heading: "Endless", ui-sans-serif, system-ui, sans-serif;
 
   --color-bone: #e9e4da;
   --color-ash: #8b8578;

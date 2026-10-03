@@ -29,14 +29,13 @@ export function CommandPalette({
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange} title="Look around">
       <Command>
-      <CommandInput placeholder="look around…" />
+      <CommandInput placeholder="look around" />
       <CommandList>
         <CommandEmpty>Nothing here by that name.</CommandEmpty>
-        <CommandGroup heading="the desk">
-          {DESK.map((f) => (
+        <CommandGroup heading="the desk">          {DESK.map((f) => (
             <CommandItem
               key={f.key}
-              value={`${f.label} ${f.sub} ${f.peek}`}
+              value={`${f.label} ${f.peek}`}
               onSelect={() => {
                 onOpenChange(false);
                 navigate(f.to);
@@ -47,10 +46,7 @@ export function CommandPalette({
                 style={{ background: f.accent }}
                 aria-hidden
               />
-              <span>{f.label}</span>
-              <span className="ml-auto font-mono text-[0.66rem] tracking-widest text-muted-foreground uppercase">
-                {f.sub}
-              </span>
+              <span className="lowercase">{f.label}</span>
             </CommandItem>
           ))}
         </CommandGroup>

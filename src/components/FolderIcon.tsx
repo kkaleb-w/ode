@@ -37,7 +37,7 @@ export function FolderIcon({
     >
       <Link
         to={folder.to}
-        aria-label={`${folder.label} — ${folder.sub}`}
+        aria-label={folder.label}
         className="block rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-amber/70 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
       >
         <div className="relative h-[132px] w-[172px] [perspective:900px]">
@@ -48,8 +48,8 @@ export function FolderIcon({
             className="absolute top-0 left-0 h-[20px] w-[104px] rounded-t-[9px] border border-b-0 border-white/[0.11] bg-[#0d0e14]/78"
             style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)" }}
           />
-          <div className="absolute top-[6px] left-[13px] font-mono text-[0.66rem] tracking-[0.18em] text-ash/82 uppercase">
-            {folder.sub}
+          <div className="absolute top-[6px] left-[13px] font-mono text-[0.62rem] tracking-[0.18em] text-ash/70 uppercase">
+            {folder.key === "photography" ? "roll 01" : folder.key === "code" ? "kkaleb-w" : ""}
           </div>
           {/* what is inside, behind the lid */}
           <div className="absolute inset-x-[14px] top-[20px] h-[62px] overflow-hidden">
@@ -76,13 +76,9 @@ export function FolderIcon({
                 transform: `rotate(${tilt}deg) translateX(${bx * 2.2}px)`,
               }}
             >
-              <div className="relative rounded-[3px] bg-paper px-[9px] py-[7px] shadow-[0_6px_14px_-6px_rgba(0,0,0,0.8)]">
-                <div className="font-mono text-[0.72rem] leading-none tracking-[0.02em] text-ink lowercase">
+              <div className="relative rounded-[3px] bg-paper px-[10px] py-[8px] shadow-[0_6px_14px_-6px_rgba(0,0,0,0.8)]">
+                <div className="font-display text-[0.86rem] leading-none tracking-[0.01em] text-ink lowercase">
                   {folder.label}
-                </div>
-                <div className="mt-[6px] h-px w-full bg-ink/15" />
-                <div className="mt-[5px] font-mono text-[0.66rem] leading-none tracking-[0.16em] text-ink/45 uppercase">
-                  {folder.key === "about" ? "opens the window" : "open"}
                 </div>
                 <span
                   className="absolute -top-[3px] left-1/2 h-[6px] w-[26px] -translate-x-1/2 rounded-[1px] bg-ink/10"

@@ -8,9 +8,9 @@ import { LINKS } from "@/content/site";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const READING = [
-  { title: "The Odes", who: "John Keats", note: "read for the same reason people go outside" },
-  { title: "Zach Bryan", who: "on repeat", note: "he leaves the room in the song" },
-  { title: "the night sky, unassisted", who: "most nights", note: "free, and the only subscription I keep" },
+  { title: "The Odes", who: "Keats" },
+  { title: "Zach Bryan", who: "on repeat" },
+  { title: "the night sky", who: "most nights" },
 ];
 
 /**
@@ -28,42 +28,28 @@ export default function About() {
 
   return (
     <PageShell
-      kicker="about"
-      title="who left the light on"
-      lede="I build quiet things, mostly at night. This page is the window in the photograph, opened."
+      kicker=""
+      title="about"
+      lede="I build quiet things, mostly at night."
     >
       <div className="grid gap-12 md:grid-cols-[1fr_0.72fr] md:gap-16">
         <div className="max-w-[54ch]">
-          <p className="font-serif text-[1.1rem] leading-[1.85] text-bone/85">
-            My name is Kaleb Wright. I make software the way I take photographs —
-            slowly, at night, and mostly of things that are about to be empty.
-          </p>
-          <p className="mt-6 font-serif text-[1.05rem] leading-[1.85] text-bone/85">
-            I care about the feeling of a thing more than the feature list. A rosary
-            app that is calm enough to actually pray with. A portfolio that is a
-            room instead of a menu. Keats wrote six odes and stopped; Zach Bryan
-            writes like he is telling you something he is slightly embarrassed to
-            mean. That is the register I am aiming at.
-          </p>
-          <p className="mt-6 font-serif text-[1.05rem] leading-[1.85] text-bone/85">
-            If you are here from a job, a message, or a link I sent you: the
-            folders on the desk are the honest answer to &ldquo;what does he
-            do.&rdquo;
+          <p className="font-serif text-[1.1rem] leading-[1.8] text-white/80">
+            My name is Kaleb Wright. I make software the way I take photographs:
+            slowly, at night, and mostly of things that are about to be empty. I
+            care about the feeling of a thing more than the feature list.
           </p>
 
-          <h2 id="reading" className="label-caps mt-14 scroll-mt-24 text-ash/88">
+          <h2 id="reading" className="label-caps mt-14 scroll-mt-24 text-white/45">
             what is on
           </h2>
-          <ul className="mt-4 border-t border-bone/10">
+          <ul className="mt-4 border-t border-white/10">
             {READING.map((r) => (
-              <li key={r.title} className="border-b border-bone/10 py-4">
-                <div className="flex flex-wrap items-baseline gap-x-3">
-                  <span className="font-serif text-[1.15rem] text-bone/90">{r.title}</span>
-                  <span className="font-mono text-[0.68rem] tracking-[0.18em] text-ash/72 uppercase">
-                    {r.who}
-                  </span>
-                </div>
-                <p className="mt-1 font-serif text-[0.98rem] text-bone/78 italic">{r.note}</p>
+              <li key={r.title} className="flex flex-wrap items-baseline gap-x-3 border-b border-white/10 py-4">
+                <span className="font-display text-[1rem] text-white/85 lowercase">{r.title}</span>
+                <span className="font-mono text-[0.6rem] tracking-[0.18em] text-white/40 lowercase">
+                  {r.who}
+                </span>
               </li>
             ))}
           </ul>

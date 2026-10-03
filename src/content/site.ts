@@ -7,18 +7,17 @@ export type FolderKey = "photography" | "code" | "rosaria" | "about";
 
 export interface DeskFolder {
   key: FolderKey;
-  /** Paper label, set in mono. Two lines, like a real folder tab. */
+  /** Paper label. One word, lowercase. */
   label: string;
-  sub: string;
   to: string;
   accent: string;
-  /** One line that peeks out with the lid. */
+  /** One line that peeks out with the lid. Short on purpose. */
   peek: string;
   peekKind: "photo" | "graph" | "rosary" | "window";
-  /** Grid placement in the desktop cluster: col / row. */
-  col: number;
-  row: number;
-  /** Degrees of rest rotation of the label, for a desk that a person uses. */
+  /** Where it was left on the desk: [left, top] in viewport %. */
+  left: string;
+  top: string;
+  /** Degrees of rest rotation, for a desk a person actually uses. */
   tilt: number;
 }
 
@@ -26,49 +25,45 @@ export const DESK: DeskFolder[] = [
   {
     key: "photography",
     label: "photography",
-    sub: "roll 01 · night",
     to: "/photography",
     accent: "#f5a623",
-    peek: "one frame developed, five still in the dark",
+    peek: "only one frame came out",
     peekKind: "photo",
-    col: 1,
-    row: 1,
+    left: "6.5%",
+    top: "24%",
     tilt: -1.6,
   },
   {
     key: "code",
     label: "code",
-    sub: "kkaleb-w",
     to: "/code",
     accent: "#8fdc8f",
-    peek: "152 times this year, and counting",
+    peek: "everything I have written",
     peekKind: "graph",
-    col: 2,
-    row: 1,
+    left: "34%",
+    top: "9%",
     tilt: 1.1,
   },
   {
     key: "rosaria",
     label: "rosaria",
-    sub: "a rosary, slowly",
     to: "/rosaria",
     accent: "#d9b8ff",
-    peek: "the one that is still being made",
+    peek: "the one I still use",
     peekKind: "rosary",
-    col: 1,
-    row: 2,
+    left: "9%",
+    top: "60%",
     tilt: 1.9,
   },
   {
     key: "about",
-    label: "about me",
-    sub: "who left the light on",
+    label: "about",
     to: "/about",
     accent: "#e9e4da",
-    peek: "a person, and what he is reading",
+    peek: "who left the light on",
     peekKind: "window",
-    col: 2,
-    row: 2,
+    left: "58%",
+    top: "62%",
     tilt: -2.2,
   },
 ];
@@ -104,10 +99,9 @@ export const LINKS = {
  * answers by admitting what time it is where you are.
  */
 export function greeting(hour: number): string {
-  if (hour < 4) return "it is late where you are";
-  if (hour < 6) return "nearly morning there";
-  if (hour < 12) return "morning, still dark here";
-  if (hour < 17) return "afternoon on your street";
-  if (hour < 21) return "evening where you are";
-  return "night again";
+  if (hour < 5) return "night";
+  if (hour < 12) return "morning";
+  if (hour < 17) return "afternoon";
+  if (hour < 21) return "evening";
+  return "night";
 }

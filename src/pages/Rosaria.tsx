@@ -6,15 +6,9 @@ import { LINKS } from "@/content/site";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const SHOTS = [
-  { src: "/rosaria/01-home.webp", alt: "Rosaria home screen: prayer streak, today's mystery, weekly progress." },
-  { src: "/rosaria/02-pray.webp", alt: "Rosaria pray screen: the beads drawn on screen." },
-  { src: "/rosaria/03-praying.webp", alt: "Rosaria mid-prayer: the current decade in progress." },
-];
-
-const FACTS = [
-  ["front end", "react · vite · chakra ui · pwa"],
-  ["back end", "python · fastapi · mongodb"],
-  ["what it does", "daily mystery, on-screen beads, streak, weekly progress"],
+  { src: "/rosaria/01-home.webp", alt: "Rosaria home screen." },
+  { src: "/rosaria/02-pray.webp", alt: "Rosaria pray screen." },
+  { src: "/rosaria/03-praying.webp", alt: "Rosaria mid-prayer." },
 ];
 
 /**
@@ -23,9 +17,9 @@ const FACTS = [
 export default function Rosaria() {
   return (
     <PageShell
-      kicker="featured"
+      kicker=""
       title="rosaria"
-      lede="The Rosary, with the beads on screen. It is the thing I actually use every day, which is the only reason I trust it."
+      lede="The Rosary, with the beads on screen."
     >
       <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
         <div>
@@ -52,54 +46,35 @@ export default function Rosaria() {
               </motion.figure>
             ))}
           </div>
-          <p className="mt-5 font-mono text-[0.66rem] tracking-[0.16em] text-ash/72 uppercase">
-            screenshots from the live app · 01 oct
+          <p className="mt-5 font-mono text-[0.6rem] tracking-[0.16em] text-white/30 lowercase">
+            screenshots from the live app
           </p>
         </div>
 
         <div>
-          <p className="max-w-[42ch] font-serif text-[1.05rem] leading-[1.75] text-bone/85">
-            I wanted a rosary I could pray with one thumb, in the dark, without a
-            notification deciding what I think about. So the mystery of the day
-            picks itself, the beads are drawn on the glass, and the only number
-            the app shows you is the streak — gently, once, at the top.
+          <p className="max-w-[40ch] font-serif text-[1.05rem] leading-[1.75] text-white/75">
+            A rosary I can pray with one thumb, in the dark, without a
+            notification deciding what I think about. The mystery of the day
+            picks itself; the beads are drawn on the glass.
           </p>
-          <p className="mt-5 max-w-[42ch] font-serif text-[1.05rem] leading-[1.75] text-bone/78">
-            It is a real app, in real use, and it is still being worked on. The
-            green squares on the other page are mostly this.
-          </p>
-
-          <dl className="mt-9 border-t border-bone/10">
-            {FACTS.map(([k, v]) => (
-              <div
-                key={k}
-                className="flex flex-col gap-1 border-b border-bone/10 py-3.5 sm:flex-row sm:items-baseline sm:gap-6"
-              >
-                <dt className="label-caps w-32 shrink-0 text-ash/72">{k}</dt>
-                <dd className="font-mono text-[0.68rem] tracking-[0.12em] text-bone/85 lowercase">
-                  {v}
-                </dd>
-              </div>
-            ))}
-          </dl>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href={LINKS.rosaria}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-amber px-4 py-2 font-mono text-[0.64rem] tracking-[0.2em] text-primary-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-amber px-4 py-2 font-mono text-[0.62rem] tracking-[0.2em] text-primary-foreground lowercase transition-transform duration-300 hover:-translate-y-0.5"
             >
-              open rosaria.cc
+              rosaria.cc
               <ArrowUpRight className="size-3.5" />
             </a>
             <a
               href={LINKS.rosariaRepo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-b border-bone/25 pb-1 font-mono text-[0.64rem] tracking-[0.2em] text-bone/82 uppercase transition-colors hover:border-amber hover:text-bone"
+              className="inline-flex items-center gap-2 border-b border-white/25 pb-1 font-mono text-[0.62rem] tracking-[0.2em] text-white/70 lowercase transition-colors hover:border-amber hover:text-white"
             >
-              the source
+              source
               <ArrowUpRight className="size-3.5" />
             </a>
           </div>
