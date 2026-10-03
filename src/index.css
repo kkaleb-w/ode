@@ -38,6 +38,12 @@
   --color-moss: #8fdc8f;
   --color-rosary: #d9b8ff;
 
+  /* aged paper — the folders are manila, not glass */
+  --color-kraft: #c4b094;
+  --color-kraft-deep: #a08a6c;
+  --color-kraft-shade: #6f5c43;
+  --color-ink-brown: #2e2619;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -129,6 +135,63 @@
   :focus-visible {
     outline: none;
   }
+
+  /* ── browser surfaces ───────────────────────────────────────
+     The parts nobody draws still belong to the world: the pointer,
+     the caret, the selection, the scrollbar. */
+  html {
+    caret-color: #e9e4da;
+  }
+
+  /* the pointer is a 1990s arrow, drawn pixel by pixel in public/cursors/,
+     with a pointing hand over anything pressable. Not gated on pointer type:
+     a touch device ignores `cursor` entirely, and gating it behind
+     @media (pointer: fine) only breaks it on hardware that reports otherwise */
+  html,
+  body {
+    cursor: url("/cursors/arrow.png") 0 0, auto;
+  }
+  a,
+  button,
+  [role="button"],
+  select,
+  summary,
+  label {
+    cursor: url("/cursors/hand.png") 5 1, pointer;
+  }
+  @supports (cursor: image-set(url("") 1x)) {
+    html,
+    body {
+      cursor: image-set(url("/cursors/arrow.png") 1x, url("/cursors/arrow@2x.png") 2x) 0 0, auto;
+    }
+    a,
+    button,
+    [role="button"],
+    select,
+    summary,
+    label {
+      cursor: image-set(url("/cursors/hand.png") 1x, url("/cursors/hand@2x.png") 2x) 5 1, pointer;
+    }
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #3a342a #06070a;
+  }
+  html::-webkit-scrollbar {
+    width: 11px;
+  }
+  html::-webkit-scrollbar-track {
+    background: #06070a;
+  }
+  html::-webkit-scrollbar-thumb {
+    background: #34302a;
+    border: 3px solid #06070a;
+    border-radius: 0;
+  }
+  html::-webkit-scrollbar-thumb:hover {
+    background: #4a4438;
+  }
 }
 
 @layer utilities {
@@ -173,18 +236,6 @@
   100% {
     transform: translate3d(calc(var(--drift, 40px) * -1), -160px, 0);
     opacity: 0;
-  }
-}
-
-@keyframes breathe-glow {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.95;
-    transform: scale(1.07);
   }
 }
 

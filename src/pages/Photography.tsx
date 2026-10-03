@@ -1,113 +1,69 @@
-import { useState } from "react";
 import { motion } from "motion/react";
 import { PageShell } from "@/components/PageShell";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { ROLL_01, type Frame } from "@/content/photography";
-import { cn } from "@/lib/utils";
+import { ROLL_01 } from "@/content/photography";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * The contact sheet. One frame was worth keeping; the rest are still in the dark,
- * drawn the way an unexposed frame actually looks on a strip — with the grease
- * pencil mark you make so you can find it again later.
+ * The photographs, butted together.
+ *
+ * Square tiles, sharp corners, no gaps, no borders, no captions at rest — the
+ * pictures touch each other and nothing frames them. Come near one and it lifts
+ * forward a little, leans five degrees, and says what it is along its bottom
+ * edge.
+ *
+ * The grid is capped at 1280 wide on purpose: that is the long edge of the
+ * source frames, so no tile is ever asked to show a photograph larger than it
+ * actually is.
  */
 export default function Photography() {
-  const [loupe, setLoupe] = useState<Frame | null>(null);
-
   return (
-    <PageShell
-      kicker="roll 01"
-      title="photography"
-      lede="One frame from this roll came out."
-    >
-      <div className="overflow-hidden rounded-3xl border border-bone/10 bg-[#08090d]/70 p-3 backdrop-blur-md md:p-5">
-        {/* sprockets */}
-        <div className="mb-3 flex justify-between px-1" aria-hidden>
-          {Array.from({ length: 28 }).map((_, i) => (
-            <span key={i} className="h-1.5 w-3 rounded-[1px] bg-bone/[0.07]" />
-          ))}
-        </div>
-
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:gap-3">
-          {ROLL_01.map((frame, i) => (
-            <motion.div
-              key={frame.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 + i * 0.07, ease: EASE }}
-            >
-              {frame.developed ? (
-                <button
-                  type="button"
-                  onClick={() => setLoupe(frame)}
-                  className="group relative block aspect-[3/4] w-full overflow-hidden rounded-sm ring-1 ring-bone/12 outline-none focus-visible:ring-2 focus-visible:ring-amber"
-                  aria-label={`Open ${frame.caption}`}
-                >
-                  <img
-                    src={frame.src}
-                    alt={frame.caption}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+    <PageShell title="photography" bleed>
+      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-2 md:grid-cols-3">
+        {ROLL_01.map((frame, i) => (
+          <motion.figure
+            key={frame.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.05 + i * 0.05, ease: EASE }}
+            className="group relative aspect-square hover:z-10"
+            style={{ WebkitBackfaceVisibility: "hidden" }}
+          >
+            {frame.developed ? (
+              <img
+                src={frame.src}
+                alt={frame.caption}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02] group-hover:rotate-[5deg]"
+              />
+            ) : (
+              /* An unexposed frame: nothing in it, and the page says so by
+                 showing nothing — a dark square with the grease-pencil ring you
+                 draw so you can find it again. */
+              <span className="absolute inset-0 bg-[#07080b]">
+                <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
+                  <ellipse
+                    cx="50"
+                    cy="50"
+                    rx="30"
+                    ry="36"
+                    fill="none"
+                    stroke="rgba(233,228,218,0.13)"
+                    strokeWidth="1.1"
+                    strokeDasharray="6 5"
+                    transform="rotate(-6 50 50)"
                   />
-                  <span className="absolute inset-0 bg-amber/0 transition-colors duration-500 group-hover:bg-amber/[0.06]" />
-                  <span className="absolute bottom-2 left-2 font-mono text-[0.66rem] tracking-[0.18em] text-bone/78 uppercase">
-                    {frame.note}
-                  </span>
-                </button>
-              ) : (
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#040507] ring-1 ring-bone/[0.07]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(233,228,218,0.045),transparent_70%)]" />
-                  <span className="absolute top-2 left-2 font-mono text-[0.66rem] tracking-[0.18em] text-ash/72 uppercase">
-                    {frame.note}
-                  </span>
-                  {/* grease pencil circle around an undeveloped frame */}
-                  <svg viewBox="0 0 100 133" className="absolute inset-0 h-full w-full" aria-hidden>
-                    <ellipse
-                      cx="50"
-                      cy="66"
-                      rx="33"
-                      ry="44"
-                      fill="none"
-                      stroke="rgba(245,166,35,0.22)"
-                      strokeWidth="1.2"
-                      strokeDasharray="7 5"
-                      transform="rotate(-6 50 66)"
-                    />
-                  </svg>
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
+                </svg>
+              </span>
+            )}
 
-        <div className="mt-4 flex items-center justify-between px-1 font-mono text-[0.68rem] tracking-[0.18em] text-white/35 lowercase">
-          <span>roll 01</span>
-          <span>1 of 6</span>
-        </div>
-      </div>
-
-      <Dialog open={!!loupe} onOpenChange={(o) => !o && setLoupe(null)}>
-        <DialogContent
-          className="max-w-3xl border-bone/12 bg-[#08090d]/95 p-3 backdrop-blur-2xl"
-          showCloseButton
-        >
-          <DialogTitle className="sr-only">{loupe?.caption ?? "Photograph"}</DialogTitle>
-          {loupe && (
-            <figure>
-            <img
-            src={loupe.src}
-            alt={loupe.caption}
-            className={cn("w-full rounded-md object-cover ring-1 ring-white/10")}
-            />
-            <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 px-1 font-mono text-[0.62rem] tracking-[0.16em] text-white/45 lowercase">
-            <span className="text-white/75">{loupe.stamp}</span>
-            <span>{loupe.note}</span>
+            <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-1.5 bg-gradient-to-t from-black/75 via-black/35 to-transparent px-3 pt-6 pb-2 font-mono text-[0.6rem] tracking-[0.12em] text-white/0 lowercase transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:text-white/90">
+              {frame.caption}
             </figcaption>
-            </figure>
-          )}
-        </DialogContent>
-      </Dialog>
+          </motion.figure>
+        ))}
+      </div>
     </PageShell>
   );
 }

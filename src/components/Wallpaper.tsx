@@ -2,29 +2,36 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useCoverBox } from "@/lib/useMedia";
-import { usePrefersReducedMotion } from "@/lib/hooks";
 
-const ASPECT = 1280 / 853;
+const NIGHT = { src: "/night.jpg", aspect: 1280 / 853 };
+const SUNSET = { src: "/sunset.jpg", aspect: 960 / 1280 };
 
-/** The lit window in the photograph, in image-relative fractions. */
+/** The lit window in the night photograph, in image-relative fractions. */
 export const WINDOW = { cx: 0.675, cy: 0.354, w: 0.115, h: 0.16 };
 
 /**
- * The photograph. Full bleed, never scrolling, and — the point of the whole
- * page — the one lit window in it is a door.
+ * The photograph, full bleed. Nothing is drawn on top of it — no glow, no
+ * invented light. The picture already has one lit window in it and that is the
+ * only thing the page needs it to do.
+ *
+ * `withDoor` turns that window into the way to the about page. The hotspot is
+ * computed from where `object-fit: cover` actually lands the image, so it sits
+ * on the real window at any viewport shape.
  */
 export function Wallpaper({
+  variant = "night",
   dim = false,
   blur = false,
   withDoor = false,
 }: {
+  variant?: "night" | "sunset";
   dim?: boolean;
   blur?: boolean;
   withDoor?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const box = useCoverBox(ref, ASPECT);
-  const reduced = usePrefersReducedMotion();
+  const image = variant === "sunset" ? SUNSET : NIGHT;
+  const box = useCoverBox(ref, image.aspect);
 
   const doorStyle =
     box.width > 0
@@ -39,49 +46,29 @@ export function Wallpaper({
   return (
     <div ref={ref} className="fixed inset-0 overflow-hidden">
       <img
-        src="/night.jpg"
-        alt="A wooden fence at night, trees behind it, and one small window still lit."
+        src={image.src}
+        alt={
+          variant === "sunset"
+            ? "A sunset over a row of standing stones, framed by maple leaves in shadow."
+            : "A wooden fence at night, trees behind it, and one small window still lit."
+        }
         className={cn(
           "absolute inset-0 h-full w-full object-cover object-center",
-          "transition-[filter,transform] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-          dim && "brightness-[0.42] saturate-[0.75]",
-          !dim && "brightness-[1.08] contrast-[1.03] saturate-[1.05]",
+          dim && "brightness-[0.55] saturate-[0.85]",
           blur && "blur-[3px]",
         )}
         fetchPriority="high"
         decoding="async"
       />
 
-      {/* the light in the window, breathing under the pixels */}
-      <div
-        aria-hidden
-        className={cn(
-          "pointer-events-none absolute",
-          !reduced && "motion-safe:animate-[breathe-glow_9s_ease-in-out_infinite]",
-        )}
-        style={doorStyle}
-      >
-        <div className="h-full w-full rounded-[2px] bg-[radial-gradient(closest-side,rgba(245,166,35,0.55),rgba(245,166,35,0)_78%)] blur-[6px]" />
-      </div>
-
-      {withDoor && (
+      {withDoor && variant === "night" && (
         <Link
           to="/about"
-          aria-label="The lit window — who left the light on"
-          className="group absolute rounded-[3px] outline-none focus-visible:ring-2 focus-visible:ring-amber/80"
+          aria-label="The lit window — about"
+          className="group absolute rounded-[2px] outline-none"
           style={doorStyle}
         >
-          <span className="absolute inset-0 rounded-[3px] ring-1 ring-white/15 transition-all duration-500 group-hover:ring-amber/70 group-focus-visible:ring-amber/80 group-hover:shadow-[0_0_44px_10px_rgba(245,166,35,0.42)] group-focus-visible:shadow-[0_0_44px_10px_rgba(245,166,35,0.5)]" />
-          <span
-            className={cn(
-              "absolute -bottom-9 left-1/2 -translate-x-1/2 translate-y-1 whitespace-nowrap",
-              "font-mono text-[0.64rem] tracking-[0.2em] text-amber/0 uppercase",
-              "transition-all duration-500 group-hover:translate-y-0 group-hover:text-amber/85",
-              "group-focus-visible:translate-y-0 group-focus-visible:text-amber/85",
-            )}
-          >
-            someone&apos;s still up
-          </span>
+          <span className="absolute inset-0 rounded-[2px] ring-1 ring-white/0 transition-[box-shadow,--tw-ring-color] duration-500 group-hover:ring-white/45 group-focus-visible:ring-white/60" />
         </Link>
       )}
     </div>

@@ -27,27 +27,23 @@ export default function About() {
   }, [hash]);
 
   return (
-    <PageShell
-      kicker=""
-      title="about"
-      lede="I build quiet things, mostly at night."
-    >
+    <PageShell title="about">
       <div className="grid gap-12 md:grid-cols-[1fr_0.72fr] md:gap-16">
         <div className="max-w-[54ch]">
-          <p className="font-serif text-[1.1rem] leading-[1.8] text-white/80">
+          <p className="font-serif text-[1.1rem] leading-[1.8] text-white/88">
             My name is Kaleb Wright. I make software the way I take photographs:
             slowly, at night, and mostly of things that are about to be empty. I
             care about the feeling of a thing more than the feature list.
           </p>
 
-          <h2 id="reading" className="label-caps mt-14 scroll-mt-24 text-white/45">
+          <h2 id="reading" className="label-caps mt-14 scroll-mt-24 text-white/65">
             what is on
           </h2>
           <ul className="mt-4 border-t border-white/10">
             {READING.map((r) => (
               <li key={r.title} className="flex flex-wrap items-baseline gap-x-3 border-b border-white/10 py-4">
                 <span className="font-display text-[1rem] text-white/85 lowercase">{r.title}</span>
-                <span className="font-mono text-[0.6rem] tracking-[0.18em] text-white/40 lowercase">
+                <span className="font-mono text-[0.6rem] tracking-[0.18em] text-white/60 lowercase">
                   {r.who}
                 </span>
               </li>

@@ -66,8 +66,8 @@ function Field({ days }: { days: Day[] }) {
   return (
     <div className="rounded-3xl border border-bone/10 bg-[#08090d]/70 p-4 backdrop-blur-md md:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <p className="label-caps text-white/50">this year</p>
-        <p className="font-mono text-[0.66rem] tracking-[0.18em] text-ash/88 uppercase">
+        <p className="label-caps text-white/70">this year</p>
+        <p className="font-mono text-[0.66rem] tracking-[0.18em] text-white/72 lowercase">
           {total} contributions
         </p>
       </div>
@@ -139,12 +139,12 @@ function RepoRow({ repo }: { repo: Repo }) {
         <span className="font-mono text-[0.8rem] tracking-[0.02em] text-bone lowercase">
           {repo.name}
         </span>
-        <ArrowUpRight className="size-3.5 text-ash transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-amber" />
+        <ArrowUpRight className="size-3.5 text-white/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-amber" />
       </div>
-      <p className="min-w-0 flex-1 font-serif text-[0.95rem] leading-snug text-white/60 italic">
+      <p className="min-w-0 flex-1 font-serif text-[0.95rem] leading-snug text-white/72 italic">
         {repo.description ?? ""}
       </p>
-      <div className="flex shrink-0 items-center gap-4 font-mono text-[0.68rem] tracking-[0.16em] text-ash/82 uppercase">
+      <div className="flex shrink-0 items-center gap-4 font-mono text-[0.68rem] tracking-[0.16em] text-white/70 lowercase">
         {repo.language && <span>{repo.language}</span>}
         {repo.stargazers_count > 0 && (
           <span className="flex items-center gap-1">
@@ -191,11 +191,7 @@ export default function Code() {
   }, []);
 
   return (
-    <PageShell
-      kicker=""
-      title="code"
-      lede="Everything I have written, and when."
-    >
+    <PageShell title="code">
       <Field days={days} />
 
       <div className="mt-12">

@@ -16,11 +16,7 @@ const SHOTS = [
  */
 export default function Rosaria() {
   return (
-    <PageShell
-      kicker=""
-      title="rosaria"
-      lede="The Rosary, with the beads on screen."
-    >
+    <PageShell title="rosaria">
       <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
         <div>
           <div className="flex gap-3 md:gap-4">
@@ -46,19 +42,13 @@ export default function Rosaria() {
               </motion.figure>
             ))}
           </div>
-          <p className="mt-5 font-mono text-[0.6rem] tracking-[0.16em] text-white/30 lowercase">
+          <p className="mt-5 font-mono text-[0.6rem] tracking-[0.16em] text-white/50 lowercase">
             screenshots from the live app
           </p>
         </div>
 
         <div>
-          <p className="max-w-[40ch] font-serif text-[1.05rem] leading-[1.75] text-white/75">
-            A rosary I can pray with one thumb, in the dark, without a
-            notification deciding what I think about. The mystery of the day
-            picks itself; the beads are drawn on the glass.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-2 flex flex-wrap items-center gap-4">
             <a
               href={LINKS.rosaria}
               target="_blank"
@@ -72,7 +62,7 @@ export default function Rosaria() {
               href={LINKS.rosariaRepo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-b border-white/25 pb-1 font-mono text-[0.62rem] tracking-[0.2em] text-white/70 lowercase transition-colors hover:border-amber hover:text-white"
+              className="inline-flex items-center gap-2 border-b border-white/25 pb-1 font-mono text-[0.62rem] tracking-[0.2em] text-white/85 lowercase transition-colors hover:border-amber hover:text-white"
             >
               source
               <ArrowUpRight className="size-3.5" />
