@@ -51,13 +51,14 @@ face to do.
   seconds breaks into a **burst of flickers** — five quick dips inside an 18%
   window of the cycle — before going steady again. Three nested animations, so no
   two cycles line up.
-- **Leaving a page, the swarm sinks.** On any route change the whole field drifts
-  to the foot of the screen — 4.6s of travel, measured top edge 8px → 683px on a
-  900px viewport — while it thins out, and then the loop starts over so the next
-  page's fireflies come up from the bottom rather than appearing mid-flight.
-  Nothing happens on the first load, because the first load is not a departure.
-  The dive runs on its own wrapper: one transform is the gust, one is the dive,
-  and neither can overwrite the other.
+- **The swarm's height is a position, not an animation.** The desk is home and
+  there the fireflies sit at 0. Any other page and the whole field settles 32vh
+  lower and stays there; back to the desk and it rises to exactly where it came
+  from. It is one value that moves, so nothing fades and nothing remounts — the
+  swarm you left is the swarm you come back to. Measured mid-transition: 0 →
+  288px over 3.6s on the way in, 288 → 0 on the way home, opacity 1 throughout.
+  The distance is `DEPTH` in `Fireflies.tsx`; the container clips, so raising it
+  far enough empties the field off the bottom edge rather than lowering it.
 - **The wind**: `src/lib/air.ts`. A steady lean toward the pointer, and a gust
   that arrives as a **train of pushes**, never one shove: two to four pushes of
   differing strength (120–290ms each) separated by 70–220ms, then 3.4–8.6s of
@@ -72,11 +73,14 @@ face to do.
 - **The folder**: manila, not glass. One silhouette — a tab standing proud on the
   left, a body below it, a flap hinged along its bottom edge that swings to
   `rotateX(-48deg)` on hover. The sheet of paper stays **in** the folder, as it
-  should, and carries the page's name at its top edge, which is the only part the
-  opened flap exposes. A blurred contact shadow sits under it so it rests on the
-  desk. Verified by hit test: on hover the sheet's top edge sits 20px inside the
-  folder and all nine sample points across the name return the name itself, so the
-  label is genuinely visible rather than merely present.
+  should, resting 40px down inside it where the closed flap covers it completely,
+  and slides up into the opening in 380ms. No opacity anywhere in that: the flap
+  is what hides it, so the movement can be real travel instead of a short hop with
+  a fade over the top. The name sits at the sheet's top edge, which is the only
+  part the opened flap exposes. A blurred contact shadow sits under it so it rests
+  on the desk. Verified by hit test: at rest the name is not the topmost element
+  at its own centre (correctly hidden), and on hover all nine sample points across
+  it return the name itself while the sheet's top edge sits 20px inside the folder.
 - **The chase light** on `/code`: one 11s sweep every 18s across the year grid,
   so "now" is visible without reading a label.
 - **Nothing is drawn on the photograph.** No glow, no invented light, and no

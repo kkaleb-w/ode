@@ -75,13 +75,13 @@ export function FolderIcon({
           {/* pressed crease down the flap's edge — the detail that says paper */}
           <div className="absolute inset-x-0 top-[22px] bottom-0 rounded-t-[2px] rounded-b-[3px] opacity-[0.5] [background:linear-gradient(180deg,transparent_0_2px,rgba(63,50,34,0.10)_2px_3px,transparent_3px)]" />
 
-          {/* ── the sheet, still sitting in the folder ──
-               The flap's top edge only lifts to about the middle of the body, so
-               a name centred on a tall sheet hides behind it. The sheet stays put
-               and the name moves to its top, where the opening actually is, and
-               the flap swings wider to give that top band room. */}
+          {/* ── the sheet, sitting in the folder, sliding up to be read ──
+               It starts pushed right down inside the folder where the closed flap
+               covers it completely, and slides up into the opening on hover. No
+               fade: the flap is what hides it, so it can be a real 40px of travel
+               rather than a 16px hop with an opacity trick over the top. */}
           <div className="absolute inset-x-[15px] top-[22px]">
-            <div className="translate-y-4 opacity-0 transition-[transform,opacity] duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+            <div className="translate-y-[40px] transition-transform duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-focus-visible:translate-y-0">
               <div className="flex h-[74px] flex-col items-center rounded-[2px] border border-ink-brown/25 bg-[#ded3bb] pt-2 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.9)]">
                 <span className="font-display text-[1.05rem] leading-none tracking-[0.01em] text-ink-brown/85 lowercase">
                   {folder.name}
