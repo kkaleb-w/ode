@@ -48,7 +48,7 @@ export function FolderIcon({
             className="absolute top-0 left-0 h-[20px] w-[104px] rounded-t-[9px] border border-b-0 border-white/[0.11] bg-[#0d0e14]/78"
             style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)" }}
           />
-          <div className="absolute top-[6px] left-[13px] font-mono text-[0.5rem] tracking-[0.18em] text-ash/75 uppercase">
+          <div className="absolute top-[6px] left-[13px] font-mono text-[0.66rem] tracking-[0.18em] text-ash/82 uppercase">
             {folder.sub}
           </div>
           {/* what is inside, behind the lid */}
@@ -81,7 +81,7 @@ export function FolderIcon({
                   {folder.label}
                 </div>
                 <div className="mt-[6px] h-px w-full bg-ink/15" />
-                <div className="mt-[5px] font-mono text-[0.5rem] leading-none tracking-[0.16em] text-ink/45 uppercase">
+                <div className="mt-[5px] font-mono text-[0.66rem] leading-none tracking-[0.16em] text-ink/45 uppercase">
                   {folder.key === "about" ? "opens the window" : "open"}
                 </div>
                 <span
@@ -110,7 +110,7 @@ function Peek({ folder }: { folder: DeskFolder }) {
         <div className="h-[52px] w-[38px] overflow-hidden rounded-[2px] border border-white/15 shadow-lg">
           <img src="/night.jpg" alt="" className="h-full w-full object-cover" />
         </div>
-        <p className="max-w-[92px] font-serif text-[0.72rem] leading-tight text-bone/75 italic">
+        <p className="max-w-[92px] font-serif text-[0.72rem] leading-tight text-bone/82 italic">
           {folder.peek}
         </p>
       </div>
@@ -120,7 +120,7 @@ function Peek({ folder }: { folder: DeskFolder }) {
     return (
       <div className="flex h-full flex-col justify-center gap-2">
         <MiniField />
-        <p className="font-serif text-[0.72rem] leading-tight text-bone/75 italic">{folder.peek}</p>
+        <p className="font-serif text-[0.72rem] leading-tight text-bone/82 italic">{folder.peek}</p>
       </div>
     );
   }
@@ -128,7 +128,7 @@ function Peek({ folder }: { folder: DeskFolder }) {
     return (
       <div className="flex h-full items-center gap-3">
         <RosaryMark />
-        <p className="max-w-[92px] font-serif text-[0.72rem] leading-tight text-bone/75 italic">
+        <p className="max-w-[92px] font-serif text-[0.72rem] leading-tight text-bone/82 italic">
           {folder.peek}
         </p>
       </div>
@@ -137,7 +137,7 @@ function Peek({ folder }: { folder: DeskFolder }) {
   return (
     <div className="flex h-full items-center gap-3">
       <WarmWindow />
-      <p className="max-w-[92px] font-serif text-[0.72rem] leading-tight text-bone/75 italic">
+      <p className="max-w-[92px] font-serif text-[0.72rem] leading-tight text-bone/82 italic">
         {folder.peek}
       </p>
     </div>

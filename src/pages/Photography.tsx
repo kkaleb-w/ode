@@ -51,14 +51,14 @@ export default function Photography() {
                     className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
                   />
                   <span className="absolute inset-0 bg-amber/0 transition-colors duration-500 group-hover:bg-amber/[0.06]" />
-                  <span className="absolute bottom-2 left-2 font-mono text-[0.5rem] tracking-[0.18em] text-bone/70 uppercase">
+                  <span className="absolute bottom-2 left-2 font-mono text-[0.66rem] tracking-[0.18em] text-bone/78 uppercase">
                     {frame.note}
                   </span>
                 </button>
               ) : (
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#040507] ring-1 ring-bone/[0.07]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(233,228,218,0.045),transparent_70%)]" />
-                  <span className="absolute top-2 left-2 font-mono text-[0.5rem] tracking-[0.18em] text-ash/35 uppercase">
+                  <span className="absolute top-2 left-2 font-mono text-[0.66rem] tracking-[0.18em] text-ash/72 uppercase">
                     {frame.note}
                   </span>
                   {/* grease pencil circle around an undeveloped frame */}
@@ -81,17 +81,17 @@ export default function Photography() {
           ))}
         </div>
 
-        <div className="mt-4 flex items-center justify-between px-1 font-mono text-[0.5rem] tracking-[0.18em] text-ash/50 uppercase">
+        <div className="mt-4 flex items-center justify-between px-1 font-mono text-[0.66rem] tracking-[0.18em] text-ash/82 uppercase">
           <span>roll 01 · night · 35mm</span>
           <span>1 of 6 developed</span>
         </div>
       </div>
 
-      <p className="mt-8 max-w-[52ch] font-mono text-[0.58rem] leading-[2.1] tracking-[0.14em] text-ash/65 uppercase">
+      <p className="mt-8 max-w-[52ch] font-mono text-[0.64rem] leading-[2.1] tracking-[0.14em] text-ash/82 uppercase">
         the undeveloped frames are real — there is nothing in them yet. add a
-        photograph by dropping the file in <span className="text-bone/80">public/photos/</span> and
-        setting its <span className="text-bone/80">src</span> in
-        <span className="text-bone/80"> src/content/photography.ts</span>.
+        photograph by dropping the file in <span className="text-bone/85">public/photos/</span> and
+        setting its <span className="text-bone/85">src</span> in
+        <span className="text-bone/85"> src/content/photography.ts</span>.
       </p>
 
       <Dialog open={!!loupe} onOpenChange={(o) => !o && setLoupe(null)}>
@@ -107,7 +107,7 @@ export default function Photography() {
                 alt={loupe.caption}
                 className={cn("w-full rounded-md object-cover ring-1 ring-bone/10")}
               />
-              <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 px-1 font-mono text-[0.55rem] tracking-[0.18em] text-ash/70 uppercase">
+              <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 px-1 font-mono text-[0.68rem] tracking-[0.18em] text-ash/88 uppercase">
                 <span className="text-bone/85">{loupe.stamp}</span>
                 <span>{loupe.note}</span>
                 <span className="ml-auto">{loupe.place}</span>

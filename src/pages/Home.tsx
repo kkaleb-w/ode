@@ -65,7 +65,7 @@ export default function Home() {
               className="flex items-center gap-2.5"
             >
               <span className="size-1.5 rounded-full bg-amber shadow-[0_0_10px_2px_rgba(245,166,35,0.5)]" />
-              <span className="font-mono text-[0.66rem] tracking-[0.28em] text-bone/70 lowercase">
+              <span className="font-mono text-[0.66rem] tracking-[0.28em] text-bone/78 lowercase">
                 ode
               </span>
             </motion.div>
@@ -77,7 +77,7 @@ export default function Home() {
               className="flex items-center gap-4"
             >
               <span
-                className="font-mono text-[0.6rem] tracking-[0.2em] text-ash/85 lowercase"
+                className="font-mono text-[0.66rem] tracking-[0.2em] text-ash/88 lowercase"
                 title="your local time, not mine"
               >
                 {formatHour(now)} · {greeting(now.getHours())}
@@ -85,7 +85,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setPaletteOpen(true)}
-                className="group flex items-center gap-1.5 rounded-full border border-bone/12 bg-bone/[0.03] px-2.5 py-1 font-mono text-[0.58rem] tracking-[0.18em] text-ash/80 uppercase backdrop-blur-sm transition-colors duration-300 hover:border-amber/40 hover:text-bone"
+                className="group flex items-center gap-1.5 rounded-full border border-bone/12 bg-bone/[0.03] px-2.5 py-1 font-mono text-[0.64rem] tracking-[0.18em] text-ash/88 uppercase backdrop-blur-sm transition-colors duration-300 hover:border-amber/40 hover:text-bone"
               >
                 <CommandIcon className="size-3" />
                 look around
@@ -100,12 +100,12 @@ export default function Home() {
               animate={settled ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 1.4, ease: EASE }}
             >
-              <p className="label-caps text-ash/75">an ode to myself</p>
+              <p className="label-caps text-ash/82">an ode to myself</p>
               <h1 className="mt-4 font-serif text-[clamp(3.6rem,6.2vw,5.4rem)] leading-[0.9] font-extralight tracking-[-0.03em] text-bone">
                 ode
               </h1>
               <div className="mt-5 h-px w-14 bg-bone/20" />
-              <p className="mt-4 max-w-[34ch] font-mono text-[0.6rem] leading-[1.9] tracking-[0.18em] text-ash/80 uppercase">
+              <p className="mt-4 max-w-[34ch] font-mono text-[0.66rem] leading-[1.9] tracking-[0.18em] text-ash/88 uppercase">
                 kaleb wright · photography, software,
                 <br />
                 and one window left on
@@ -146,7 +146,7 @@ export default function Home() {
                           asChild
                           variant="ghost"
                           size="icon-lg"
-                          className="rounded-xl text-bone/70 transition-all duration-300 hover:-translate-y-1 hover:bg-bone/[0.06] hover:text-bone"
+                          className="rounded-xl text-bone/78 transition-all duration-300 hover:-translate-y-1 hover:bg-bone/[0.06] hover:text-bone"
                         >
                           <Link to={to} aria-label={label}>
                             <Icon className="size-[1.15rem]" style={{ color: accent }} />
@@ -168,7 +168,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={settled ? { opacity: 1 } : {}}
             transition={{ duration: 1.2, delay: 1.2 }}
-            className="absolute right-9 bottom-8 z-20 max-w-[22ch] text-right font-mono text-[0.56rem] leading-[2] tracking-[0.18em] text-ash/55 uppercase"
+            className="absolute right-9 bottom-8 z-20 max-w-[22ch] text-right font-mono text-[0.68rem] leading-[2] tracking-[0.18em] text-ash/72 uppercase"
           >
             this page does not scroll.
             <br />
@@ -182,7 +182,7 @@ export default function Home() {
             href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute right-9 top-1/2 z-20 hidden -translate-y-1/2 [writing-mode:vertical-rl] font-mono text-[0.56rem] tracking-[0.28em] text-ash/50 uppercase transition-colors duration-300 hover:text-amber xl:block"
+            className="absolute right-9 top-1/2 z-20 hidden -translate-y-1/2 [writing-mode:vertical-rl] font-mono text-[0.68rem] tracking-[0.28em] text-ash/82 uppercase transition-colors duration-300 hover:text-amber xl:block"
           >
             github.com/kkaleb-w
           </motion.a>

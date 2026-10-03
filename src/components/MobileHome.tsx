@@ -28,16 +28,16 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
   return (
     <div className="relative z-20 flex min-h-[100dvh] flex-col px-6 pt-8 pb-32">
       <header className="flex items-center justify-between">
-        <span className="font-mono text-[0.66rem] tracking-[0.28em] text-bone/70 lowercase">ode</span>
+        <span className="font-mono text-[0.66rem] tracking-[0.28em] text-bone/78 lowercase">ode</span>
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.56rem] tracking-[0.18em] text-ash/80 lowercase">
+          <span className="font-mono text-[0.68rem] tracking-[0.18em] text-ash/88 lowercase">
             {formatHour(now)} · {greeting(now.getHours())}
           </span>
           <button
             type="button"
             onClick={onLookAround}
             aria-label="Look around"
-            className="rounded-full border border-bone/12 p-1.5 text-ash/80 transition-colors hover:border-amber/40 hover:text-bone"
+            className="rounded-full border border-bone/12 p-1.5 text-ash/88 transition-colors hover:border-amber/40 hover:text-bone"
           >
             <CommandIcon className="size-3.5" />
           </button>
@@ -50,12 +50,12 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
         transition={{ duration: 1, ease: EASE }}
         className="mt-14"
       >
-        <p className="label-caps text-ash/75">an ode to myself</p>
+        <p className="label-caps text-ash/82">an ode to myself</p>
         <h1 className="mt-3 font-serif text-[3.4rem] leading-[0.9] font-extralight tracking-[-0.03em] text-bone">
           ode
         </h1>
         <div className="mt-4 h-px w-12 bg-bone/20" />
-        <p className="mt-4 max-w-[30ch] font-mono text-[0.58rem] leading-[2] tracking-[0.16em] text-ash/80 uppercase">
+        <p className="mt-4 max-w-[30ch] font-mono text-[0.64rem] leading-[2] tracking-[0.16em] text-ash/88 uppercase">
           kaleb wright · photography, software, and one window left on
         </p>
       </motion.div>
@@ -91,7 +91,7 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
             }}
           />
           <span className="min-w-0">
-            <span className="block font-mono text-[0.56rem] tracking-[0.2em] text-amber/85 uppercase">
+            <span className="block font-mono text-[0.68rem] tracking-[0.2em] text-amber/85 uppercase">
               someone&apos;s still up
             </span>
             <span className="mt-1 block font-serif text-[1.05rem] leading-snug text-bone/90 italic">
@@ -109,7 +109,7 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
         transition={{ duration: 1, delay: 0.35, ease: EASE }}
         className="mt-12"
       >
-        <p className="label-caps mb-4 text-ash/70">open a folder</p>
+        <p className="label-caps mb-4 text-ash/88">open a folder</p>
         <ul className="flex flex-col gap-2.5">
           {DESK.map((folder) => {
             const isOpen = open === folder.key;
@@ -133,7 +133,7 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
                     <span className="block font-mono text-[0.72rem] tracking-[0.02em] text-bone lowercase">
                       {folder.label}
                     </span>
-                    <span className="mt-0.5 block font-mono text-[0.52rem] tracking-[0.18em] text-ash/70 uppercase">
+                    <span className="mt-0.5 block font-mono text-[0.66rem] tracking-[0.18em] text-ash/88 uppercase">
                       {folder.sub}
                     </span>
                   </span>
@@ -153,12 +153,12 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
                       transition={{ duration: 0.45, ease: EASE }}
                     >
                       <div className="border-t border-bone/8 px-4 py-4">
-                        <p className="font-serif text-[1rem] leading-snug text-bone/80 italic">
+                        <p className="font-serif text-[1rem] leading-snug text-bone/85 italic">
                           {folder.peek}
                         </p>
                         <Link
                           to={folder.to}
-                          className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber/35 px-3 py-1.5 font-mono text-[0.56rem] tracking-[0.2em] text-amber uppercase"
+                          className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber/35 px-3 py-1.5 font-mono text-[0.68rem] tracking-[0.2em] text-amber uppercase"
                         >
                           open {folder.label}
                           <ArrowRight className="size-3" />
@@ -173,14 +173,14 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
         </ul>
       </motion.div>
 
-      <footer className="mt-12 flex items-center gap-4 pb-4 font-mono text-[0.56rem] tracking-[0.18em] uppercase">
-        <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="text-ash/75">
+      <footer className="mt-12 flex items-center gap-4 pb-4 font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+        <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="text-ash/82">
           github
         </a>
-        <a href={`mailto:${LINKS.email}`} className="text-ash/75">
+        <a href={`mailto:${LINKS.email}`} className="text-ash/82">
           email
         </a>
-        <span className="ml-auto text-ash/40">no scroll on desktop</span>
+        <span className="ml-auto text-ash/72">no scroll on desktop</span>
       </footer>
 
       {/* thumb bar */}
@@ -190,20 +190,20 @@ export function MobileHome({ now, onLookAround }: { now: Date; onLookAround: () 
             <li key={to} className="flex-1">
               <Link
                 to={to}
-                className="flex flex-col items-center gap-1 rounded-xl py-1.5 text-ash/75 active:text-bone"
+                className="flex flex-col items-center gap-1 rounded-xl py-1.5 text-ash/82 active:text-bone"
               >
                 <Icon className="size-[1.15rem]" />
-                <span className="font-mono text-[0.5rem] tracking-[0.16em] uppercase">{label}</span>
+                <span className="font-mono text-[0.66rem] tracking-[0.16em] uppercase">{label}</span>
               </Link>
             </li>
           ))}
           <li className="flex-1">
             <a
               href={`mailto:${LINKS.email}`}
-              className="flex flex-col items-center gap-1 rounded-xl py-1.5 text-ash/75 active:text-bone"
+              className="flex flex-col items-center gap-1 rounded-xl py-1.5 text-ash/82 active:text-bone"
             >
               <Mail className="size-[1.15rem]" />
-              <span className="font-mono text-[0.5rem] tracking-[0.16em] uppercase">write</span>
+              <span className="font-mono text-[0.66rem] tracking-[0.16em] uppercase">write</span>
             </a>
           </li>
         </ul>

@@ -75,7 +75,7 @@ export function Wallpaper({
           <span
             className={cn(
               "absolute -bottom-9 left-1/2 -translate-x-1/2 translate-y-1 whitespace-nowrap",
-              "font-mono text-[0.58rem] tracking-[0.2em] text-amber/0 uppercase",
+              "font-mono text-[0.64rem] tracking-[0.2em] text-amber/0 uppercase",
               "transition-all duration-500 group-hover:translate-y-0 group-hover:text-amber/85",
               "group-focus-visible:translate-y-0 group-focus-visible:text-amber/85",
             )}

@@ -49,7 +49,7 @@ export function Epigraph({
       </blockquote>
       <figcaption
         className={cn(
-          "mt-3 font-mono text-[0.62rem] tracking-[0.22em] text-ash uppercase",
+          "mt-3 font-mono text-[0.68rem] tracking-[0.22em] text-ash uppercase",
           "transition-opacity duration-700",
           shown ? "opacity-100" : "opacity-0",
         )}

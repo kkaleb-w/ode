@@ -66,8 +66,8 @@ function Field({ days }: { days: Day[] }) {
   return (
     <div className="rounded-3xl border border-bone/10 bg-[#08090d]/70 p-4 backdrop-blur-md md:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <p className="label-caps text-ash/70">this year, so far</p>
-        <p className="font-mono text-[0.6rem] tracking-[0.18em] text-ash/70 uppercase">
+        <p className="label-caps text-ash/88">this year, so far</p>
+        <p className="font-mono text-[0.66rem] tracking-[0.18em] text-ash/88 uppercase">
           {total} contributions
         </p>
       </div>
@@ -112,10 +112,10 @@ function Field({ days }: { days: Day[] }) {
       </div>
 
       <div className="mt-4 flex items-center justify-between gap-4">
-        <p className="h-4 font-mono text-[0.55rem] tracking-[0.16em] text-bone/75 uppercase">
+        <p className="h-4 font-mono text-[0.68rem] tracking-[0.16em] text-bone/82 uppercase">
           {hover ? `${hover.date} · ${hover.count} time${hover.count === 1 ? "" : "s"}` : ""}
         </p>
-        <div className="flex items-center gap-1.5 font-mono text-[0.5rem] tracking-[0.16em] text-ash/55 uppercase">
+        <div className="flex items-center gap-1.5 font-mono text-[0.66rem] tracking-[0.16em] text-ash/72 uppercase">
           less
           {CELL.map((c, i) => (
             <span key={i} className={cn("size-[9px] rounded-[2px]", c)} />
@@ -141,10 +141,10 @@ function RepoRow({ repo }: { repo: Repo }) {
         </span>
         <ArrowUpRight className="size-3.5 text-ash transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-amber" />
       </div>
-      <p className="min-w-0 flex-1 font-serif text-[0.95rem] leading-snug text-bone/65 italic">
+      <p className="min-w-0 flex-1 font-serif text-[0.95rem] leading-snug text-bone/82 italic">
         {repo.description ?? "no description yet"}
       </p>
-      <div className="flex shrink-0 items-center gap-4 font-mono text-[0.55rem] tracking-[0.16em] text-ash/65 uppercase">
+      <div className="flex shrink-0 items-center gap-4 font-mono text-[0.68rem] tracking-[0.16em] text-ash/82 uppercase">
         {repo.language && <span>{repo.language}</span>}
         {repo.stargazers_count > 0 && (
           <span className="flex items-center gap-1">
@@ -200,8 +200,8 @@ export default function Code() {
 
       <div className="mt-14">
         <div className="flex items-baseline justify-between">
-          <p className="label-caps text-ash/70">repositories</p>
-          <p className="font-mono text-[0.55rem] tracking-[0.18em] text-ash/50 uppercase">
+          <p className="label-caps text-ash/88">repositories</p>
+          <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ash/82 uppercase">
             {live ? "live from github" : "saved snapshot"}
           </p>
         </div>
@@ -213,7 +213,7 @@ export default function Code() {
             href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.6rem] tracking-[0.2em] text-amber uppercase transition-colors hover:border-amber"
+            className="mt-5 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.66rem] tracking-[0.2em] text-amber uppercase transition-colors hover:border-amber"
           >
             all of it on github
             <ArrowUpRight className="size-3.5" />

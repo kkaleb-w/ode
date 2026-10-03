@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -27,6 +28,7 @@ export function CommandPalette({
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange} title="Look around">
+      <Command>
       <CommandInput placeholder="look around…" />
       <CommandList>
         <CommandEmpty>Nothing here by that name.</CommandEmpty>
@@ -46,7 +48,7 @@ export function CommandPalette({
                 aria-hidden
               />
               <span>{f.label}</span>
-              <span className="ml-auto font-mono text-[0.6rem] tracking-widest text-muted-foreground uppercase">
+              <span className="ml-auto font-mono text-[0.66rem] tracking-widest text-muted-foreground uppercase">
                 {f.sub}
               </span>
             </CommandItem>
@@ -74,10 +76,11 @@ export function CommandPalette({
           </CommandItem>
         </CommandGroup>
       </CommandList>
-      <div className="flex items-center gap-2 border-t border-border/70 px-3 py-2 font-mono text-[0.58rem] tracking-[0.18em] text-muted-foreground uppercase">
+      <div className="flex items-center gap-2 border-t border-border/70 px-3 py-2 font-mono text-[0.64rem] tracking-[0.18em] text-muted-foreground uppercase">
         <CornerDownLeft className="size-3" />
         open · esc close
       </div>
+      </Command>
     </CommandDialog>
   );
 }

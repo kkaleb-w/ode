@@ -38,20 +38,20 @@ export default function About() {
             My name is Kaleb Wright. I make software the way I take photographs —
             slowly, at night, and mostly of things that are about to be empty.
           </p>
-          <p className="mt-6 font-serif text-[1.05rem] leading-[1.85] text-bone/72">
+          <p className="mt-6 font-serif text-[1.05rem] leading-[1.85] text-bone/85">
             I care about the feeling of a thing more than the feature list. A rosary
             app that is calm enough to actually pray with. A portfolio that is a
             room instead of a menu. Keats wrote six odes and stopped; Zach Bryan
             writes like he is telling you something he is slightly embarrassed to
             mean. That is the register I am aiming at.
           </p>
-          <p className="mt-6 font-serif text-[1.05rem] leading-[1.85] text-bone/72">
+          <p className="mt-6 font-serif text-[1.05rem] leading-[1.85] text-bone/85">
             If you are here from a job, a message, or a link I sent you: the
             folders on the desk are the honest answer to &ldquo;what does he
             do.&rdquo;
           </p>
 
-          <h2 id="reading" className="label-caps mt-14 scroll-mt-24 text-ash/70">
+          <h2 id="reading" className="label-caps mt-14 scroll-mt-24 text-ash/88">
             what is on
           </h2>
           <ul className="mt-4 border-t border-bone/10">
@@ -59,11 +59,11 @@ export default function About() {
               <li key={r.title} className="border-b border-bone/10 py-4">
                 <div className="flex flex-wrap items-baseline gap-x-3">
                   <span className="font-serif text-[1.15rem] text-bone/90">{r.title}</span>
-                  <span className="font-mono text-[0.55rem] tracking-[0.18em] text-ash/60 uppercase">
+                  <span className="font-mono text-[0.68rem] tracking-[0.18em] text-ash/72 uppercase">
                     {r.who}
                   </span>
                 </div>
-                <p className="mt-1 font-serif text-[0.98rem] text-bone/60 italic">{r.note}</p>
+                <p className="mt-1 font-serif text-[0.98rem] text-bone/78 italic">{r.note}</p>
               </li>
             ))}
           </ul>
@@ -86,10 +86,10 @@ export default function About() {
                 boxShadow: "inset 0 0 60px 12px rgba(245,166,35,0.3)",
               }}
             />
-            <p className="mt-4 font-serif text-[1rem] leading-snug text-bone/75 italic">
+            <p className="mt-4 font-serif text-[1rem] leading-snug text-bone/82 italic">
               &ldquo;Already with thee! tender is the night.&rdquo;
             </p>
-            <p className="mt-2 font-mono text-[0.5rem] tracking-[0.2em] text-ash/55 uppercase">
+            <p className="mt-2 font-mono text-[0.66rem] tracking-[0.2em] text-ash/72 uppercase">
               keats · ode to a nightingale
             </p>
           </motion.div>
@@ -100,8 +100,8 @@ export default function About() {
               className="group flex items-center justify-between rounded-2xl border border-bone/10 px-4 py-3.5 transition-colors duration-300 hover:border-amber/40"
             >
               <span>
-                <span className="label-caps block text-ash/60">write to me</span>
-                <span className="mt-1 block font-mono text-[0.65rem] text-bone/85">
+                <span className="label-caps block text-ash/72">write to me</span>
+                <span className="mt-1 block font-mono text-[0.7rem] text-bone/85">
                   {LINKS.email}
                 </span>
               </span>
@@ -114,8 +114,8 @@ export default function About() {
               className="group flex items-center justify-between rounded-2xl border border-bone/10 px-4 py-3.5 transition-colors duration-300 hover:border-amber/40"
             >
               <span>
-                <span className="label-caps block text-ash/60">the commits</span>
-                <span className="mt-1 block font-mono text-[0.65rem] text-bone/85">
+                <span className="label-caps block text-ash/72">the commits</span>
+                <span className="mt-1 block font-mono text-[0.7rem] text-bone/85">
                   github.com/{LINKS.githubUser}
                 </span>
               </span>

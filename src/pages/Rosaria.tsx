@@ -46,25 +46,25 @@ export default function Rosaria() {
                     className="aspect-[585/1266] w-full rounded-[1.3rem] object-cover"
                   />
                 </div>
-                <figcaption className="mt-2.5 font-mono text-[0.48rem] tracking-[0.16em] text-ash/50 uppercase">
+                <figcaption className="mt-2.5 font-mono text-[0.64rem] tracking-[0.16em] text-ash/82 uppercase">
                   {i === 0 ? "home" : i === 1 ? "the beads" : "mid-decade"}
                 </figcaption>
               </motion.figure>
             ))}
           </div>
-          <p className="mt-5 font-mono text-[0.5rem] tracking-[0.16em] text-ash/40 uppercase">
+          <p className="mt-5 font-mono text-[0.66rem] tracking-[0.16em] text-ash/72 uppercase">
             screenshots from the live app · 01 oct
           </p>
         </div>
 
         <div>
-          <p className="max-w-[42ch] font-serif text-[1.05rem] leading-[1.75] text-bone/80">
+          <p className="max-w-[42ch] font-serif text-[1.05rem] leading-[1.75] text-bone/85">
             I wanted a rosary I could pray with one thumb, in the dark, without a
             notification deciding what I think about. So the mystery of the day
             picks itself, the beads are drawn on the glass, and the only number
             the app shows you is the streak — gently, once, at the top.
           </p>
-          <p className="mt-5 max-w-[42ch] font-serif text-[1.05rem] leading-[1.75] text-bone/70">
+          <p className="mt-5 max-w-[42ch] font-serif text-[1.05rem] leading-[1.75] text-bone/78">
             It is a real app, in real use, and it is still being worked on. The
             green squares on the other page are mostly this.
           </p>
@@ -75,8 +75,8 @@ export default function Rosaria() {
                 key={k}
                 className="flex flex-col gap-1 border-b border-bone/10 py-3.5 sm:flex-row sm:items-baseline sm:gap-6"
               >
-                <dt className="label-caps w-32 shrink-0 text-ash/60">{k}</dt>
-                <dd className="font-mono text-[0.62rem] tracking-[0.12em] text-bone/80 lowercase">
+                <dt className="label-caps w-32 shrink-0 text-ash/72">{k}</dt>
+                <dd className="font-mono text-[0.68rem] tracking-[0.12em] text-bone/85 lowercase">
                   {v}
                 </dd>
               </div>
@@ -88,7 +88,7 @@ export default function Rosaria() {
               href={LINKS.rosaria}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-amber px-4 py-2 font-mono text-[0.58rem] tracking-[0.2em] text-primary-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-amber px-4 py-2 font-mono text-[0.64rem] tracking-[0.2em] text-primary-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
             >
               open rosaria.cc
               <ArrowUpRight className="size-3.5" />
@@ -97,7 +97,7 @@ export default function Rosaria() {
               href={LINKS.rosariaRepo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-b border-bone/25 pb-1 font-mono text-[0.58rem] tracking-[0.2em] text-bone/75 uppercase transition-colors hover:border-amber hover:text-bone"
+              className="inline-flex items-center gap-2 border-b border-bone/25 pb-1 font-mono text-[0.64rem] tracking-[0.2em] text-bone/82 uppercase transition-colors hover:border-amber hover:text-bone"
             >
               the source
               <ArrowUpRight className="size-3.5" />
