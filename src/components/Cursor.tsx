@@ -71,7 +71,7 @@ export function Cursor() {
         y += vy;
       }
 
-      const g = a.gust * 5;
+      const g = a.gust * 1.5;
       const d = dot.current;
       const r = ring.current;
       if (d) d.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;

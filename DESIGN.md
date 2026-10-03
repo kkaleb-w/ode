@@ -42,20 +42,26 @@ face to do.
 
 - **Film grain** at 15% soft-light over everything, and a vignette *under* the
   furniture so the corners go quiet without dimming words.
-- **Fireflies**: 34 of them, rising out of the bottom edge — the swarm lives low,
-  over the dark end of the photograph, and only a handful travel the full height.
-  Each runs three nested animations (climb, sway, blink) so no two cycles match,
-  and the whole swarm drifts sideways when a gust passes. Under
-  `prefers-reduced-motion` ten of them stop and sit as steady lights.
-- **The wind**: `src/lib/air.ts`. A steady lean toward the pointer, and a **gust**
-  that arrives in bursts — a 400ms push, a short hold, a ~1–2s let-go, then two
-  to seven seconds of nothing. Measured on a parked pointer: the folder's
-  rotation sweeps 1.74° and its x-position 5px across a burst.
+- **Fireflies**: 34 of them, coming up out of the bottom edge — but not in a
+  column. They fan: most head up and outward at 15–58° off vertical, some cross
+  almost level, a few climb the whole frame at an angle. Distance is in viewport
+  height on both axes, so the fan survives a resize (measured spread: x from
+  −17vh to +28vh against y from −1.5vh to −36vh). Each one is a **bare dot with
+  no halo and no shadow** that breathes between scale 0.72 and 1.3, and every few
+  seconds breaks into a **burst of flickers** — five quick dips inside an 18%
+  window of the cycle — before going steady again. Three nested animations, so no
+  two cycles line up.
+- **The wind**: `src/lib/air.ts`. A steady lean toward the pointer, and a gust
+  that arrives as a **train of pushes**, never one shove: two to four pushes of
+  differing strength (120–290ms each) separated by 70–220ms, then 3.4–8.6s of
+  nothing. Everything about it is slight — measured over 12.8s, the folder's own
+  rotation peaked at **0.43°** with a mean push of 0.22°, in three separate pushes
+  per burst.
 - **The pointer**: the system cursor is hidden and drawn in DOM — a dot at the
   exact position (so aiming and dragging never lose precision) plus a ring that
   trails on a spring: `v += (target − x) · 0.14`, then `v ×= 0.66`. It lagged
   300px behind a 700px flick and settled with a 1px overshoot. It grows to 46px
-  over anything pressable, and a gust nudges it 5px.
+  over anything pressable, and a gust nudges it 1.5px.
 - **The folder**: manila, not glass. One silhouette — a tab standing proud on the
   left, a body below it, a flap hinged along its bottom edge that swings to
   `rotateX(-34deg)` on hover and lets a sheet lift out carrying the page's name

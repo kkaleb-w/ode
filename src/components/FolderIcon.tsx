@@ -38,10 +38,10 @@ export function FolderIcon({
     const base = `rotate(${folder.tilt}deg)`;
     return subscribeAir((air) => {
       el.style.transform =
-        `perspective(1000px) rotateX(${(air.leanY * -2).toFixed(2)}deg) ` +
-        `rotateY(${(air.leanX * 2.4).toFixed(2)}deg) ` +
-        `translate3d(${(air.leanX * 2.4 + air.gust * 5).toFixed(2)}px, ${(air.gust * 1.5).toFixed(2)}px, 0) ` +
-        `${base} rotate(${(air.gust * 1.8).toFixed(2)}deg)`;
+        `perspective(1000px) rotateX(${(air.leanY * -1.6).toFixed(3)}deg) ` +
+        `rotateY(${(air.leanX * 1.8).toFixed(3)}deg) ` +
+        `translate3d(${(air.leanX * 1.8 + air.gust * 1.6).toFixed(3)}px, ${(air.gust * 0.5).toFixed(3)}px, 0) ` +
+        `${base} rotate(${(air.gust * 0.55).toFixed(3)}deg)`;
     });
   }, [folder.tilt, reduced]);
 

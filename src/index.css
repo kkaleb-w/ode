@@ -193,18 +193,20 @@
   }
 
   /* ── fireflies ──────────────────────────────────────────────
-     Three nested animations per insect so the motion never reads as
-     a loop: the outer element climbs, the middle one sways, the core
-     blinks. Sway is inherited by the gust whenever one passes. */
-  .ff-rise {
-    animation: ff-rise var(--dur, 30s) linear infinite;
+     Three nested animations per insect, so no two cycles line up:
+     the outer element travels, the middle one breathes between
+     smaller and larger, the core holds steady and then breaks into
+     a burst of flickers. No halo and no shadow — the dot is the
+     whole insect. */
+  .ff-travel {
+    animation: ff-travel var(--dur, 30s) linear infinite;
     animation-delay: var(--delay, 0s);
   }
-  .ff-sway {
-    animation: ff-sway var(--sway-dur, 7s) ease-in-out infinite;
+  .ff-grow {
+    animation: ff-grow var(--grow-dur, 3s) ease-in-out infinite;
   }
-  .ff-core {
-    animation: ff-blink var(--blink-dur, 4.5s) ease-in-out infinite;
+  .ff-flicker {
+    animation: ff-flicker var(--flick-dur, 5s) linear infinite;
   }
 
   .edge-fade {
@@ -212,7 +214,7 @@
   }
 }
 
-@keyframes ff-rise {
+@keyframes ff-travel {
   0% {
     transform: translate3d(0, 0, 0);
     opacity: 0;
@@ -220,43 +222,55 @@
   9% {
     opacity: 1;
   }
-  78% {
+  80% {
     opacity: 1;
   }
-  95% {
-    opacity: 0.5;
+  96% {
+    opacity: 0.35;
   }
   100% {
-    transform: translate3d(0, calc(-1 * var(--rise, 50vh)), 0);
+    transform: translate3d(var(--tx, 0), var(--ty, -40vh), 0);
     opacity: 0;
   }
 }
 
-@keyframes ff-sway {
+@keyframes ff-grow {
   0%,
   100% {
-    transform: translate3d(calc(-1 * var(--sway, 18px)), 0, 0);
+    transform: scale(0.72);
   }
   50% {
-    transform: translate3d(var(--sway, 18px), 0, 0);
+    transform: scale(1.3);
   }
 }
 
-@keyframes ff-blink {
+/* steady, then a short burst of quick dips, then steady again */
+@keyframes ff-flicker {
   0%,
+  60%,
+  82%,
   100% {
     opacity: 1;
   }
-  38% {
-    opacity: 0.4;
-  }
-  45% {
-    opacity: 1;
+  63% {
+    opacity: 0.22;
   }
   66% {
-    opacity: 0.58;
+    opacity: 1;
   }
-  71% {
+  69% {
+    opacity: 0.3;
+  }
+  72% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.38;
+  }
+  78% {
+    opacity: 0.85;
+  }
+  80% {
     opacity: 1;
   }
 }
@@ -287,9 +301,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ff-rise,
-  .ff-sway,
-  .ff-core {
+  .ff-travel,
+  .ff-grow,
+  .ff-flicker {
     animation: none;
   }
   *,
