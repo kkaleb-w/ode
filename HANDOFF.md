@@ -145,6 +145,35 @@ the script without `Page.enable` is silently ignored.
 - `public/audio/_unmatched/` is where `install-audio.sh` parks files it cannot
   place; check it rather than assuming a file was ignored.
 
+## Deploy
+
+Live at **https://kkaleb.com** (and `www`), served by **Cloudflare Pages**, project `ode`,
+account `687f4c1db9b4d5abf105e1ee971a437f`.
+
+```bash
+cd /home/ubuntu/ode && npm run build
+CLOUDFLARE_API_TOKEN=$(cat ~/.cf-token) \
+CLOUDFLARE_ACCOUNT_ID=687f4c1db9b4d5abf105e1ee971a437f \
+  npx wrangler@4 pages deploy dist --project-name ode --branch main
+```
+
+The API token lives at `~/.cf-token` (mode 600). Auth is direct upload, not a Git connection,
+so a push does **not** deploy — rerun the command above.
+
+Two files in `public/` carry the host config and must survive the build: `_redirects`
+(`/* /index.html 200`, so deep routes work) and `_headers` (immutable caching on `/assets/*`).
+`vercel.json` does the same job for the Vercel path.
+
+**The catch-all rewrite masks 404s.** A missing file returns `index.html` with HTTP 200 and
+`content-type: text/html` — so check the content type, not the status, when testing whether an
+asset exists. That is how the absence of the songs was confirmed (`/audio/*.mp3` → 1216 bytes of
+HTML, not MP3).
+
+The songs from `public/audio/` are **not** uploaded: they are commercial recordings, and the
+upload mirrors what Vercel was serving before. Stripping them is a delete of `dist/audio/*.mp3`
+*after* the build, since `npm run build` copies `public/` in whole. `SoundPill` HEAD-probes each
+track and degrades cleanly, so the pill still works, it just has nothing to play.
+
 ## Open
 
 1. **Songs on the deployed site** — local-only right now. Commit and deploy, or
